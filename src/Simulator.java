@@ -14,11 +14,12 @@ public class Simulator {
      */
     public void step() {
         // Remove all racers from the map (so they can update their position.)
+        //TODO: Consider changing this to check that racers don't make an invalid move (Maybe change the Racer.drive() method too)
         for (Racer racer : racers) {
             int x = racer.getX();
             int y = racer.getY();
             grid.put(new Pair(x, y), Tile.EMPTY_TILE); // Replace the old location with empty tile.
-            // make the racers move: TODO: Consider changing this to check that racers don't make an invalid move
+            // make the racers move:
             racer.drive();
             int newX = racer.getX();
             int newY = racer.getY();
