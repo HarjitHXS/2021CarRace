@@ -3,10 +3,13 @@ import java.util.*;
 public class Simulator {
     private ArrayList<Racer> racers;
     private HashMap<Pair, Tile> grid;
+    private int time = 0;
+    private ArrayList<BoardEntry> leaderBoard;
 
     public Simulator(ArrayList<Racer> racers, HashMap<Pair, Tile> grid) {
         this.racers = racers;
         this.grid = grid;
+        this.leaderBoard = new ArrayList<>();
     }
 
     /**
@@ -20,6 +23,7 @@ public class Simulator {
             int y = racer.getY();
             grid.put(new Pair(x, y), Tile.EMPTY_TILE); // Replace the old location with empty tile.
             // make the racers move:
+            //TODO: Check the return of racer.drive(), and add to leaderboard if its false.
             racer.drive();
             int newX = racer.getX();
             int newY = racer.getY();
