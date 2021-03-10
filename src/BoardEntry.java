@@ -1,14 +1,14 @@
 public class BoardEntry {
-    private Racer racer;
+    private Car car;
     private int time;
 
-    public BoardEntry(Racer racer, int time) {
-        this.racer = racer;
+    public BoardEntry(Car car, int time) {
+        this.car = car;
         this.time = time;
     }
 
-    public Racer getRacer() {
-        return racer;
+    public Car getRacer() {
+        return car;
     }
 
     public int getTime() {

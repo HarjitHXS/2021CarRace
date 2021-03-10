@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
-public class Racer extends Tile {
+public class Car extends Tile {
     private int x,y;
     private ArrayList<Pair> goalPath;
     private int pathIndex; // Keeps track of which checkpoint is next.
 
-    public Racer(int x, int y) {
+    public Car(int x, int y) {
         super(types.CAR);
         this.x = x;
         this.y = y;
+        goalPath = new ArrayList<>();
     }
 
     public boolean hasFinished() {
