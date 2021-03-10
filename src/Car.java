@@ -32,6 +32,7 @@ public class Car extends Tile {
         // And update x/y to the next movement to make.
         x += 1;
         //TODO: Check if we have reached a checkpoint. (compare location with goalPath.get(pathIndex))
+        // If true, then increment pathIndex+1, making it point to the next checkpoint
         return true;
     }
 
