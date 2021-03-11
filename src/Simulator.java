@@ -43,14 +43,13 @@ public class Simulator {
                 new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 0))),
                 map);
         Car car1 = new Car(
-                0, 0,
+                1, 0,
                 new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 1))),
                 map);
 
 
         map.put(new Pair(0,0), car);
-
-        map.put(new Pair(1,0), Tile.EMPTY_TILE);
+        map.put(new Pair(1,0), car1); // In the same place you set its location
         map.put(new Pair(2,0), Tile.EMPTY_TILE);
         map.put(new Pair(3,0), Tile.EMPTY_TILE);
         map.put(new Pair(0,1), Tile.EMPTY_TILE);
