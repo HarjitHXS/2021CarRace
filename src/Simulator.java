@@ -42,8 +42,14 @@ public class Simulator {
                 0, 0,
                 new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 0))),
                 map);
+        Car car1 = new Car(
+                0, 0,
+                new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 1))),
+                map);
+
 
         map.put(new Pair(0,0), car);
+
         map.put(new Pair(1,0), Tile.EMPTY_TILE);
         map.put(new Pair(2,0), Tile.EMPTY_TILE);
         map.put(new Pair(3,0), Tile.EMPTY_TILE);
@@ -53,8 +59,11 @@ public class Simulator {
         map.put(new Pair(3,1), Tile.EMPTY_TILE);
 
 
+
+
+
         Simulator simulator = new Simulator(
-                new ArrayList<>(Arrays.asList(car)),
+                new ArrayList<>(Arrays.asList(car,car1)),
                 map
         );
         return simulator;

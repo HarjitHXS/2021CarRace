@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -7,13 +8,14 @@ import javafx.stage.Stage;
 public class GUI extends Application {
     private GridPane uiPane = new GridPane();
     private Button stepBtn = new Button("Step");
-    private Scene scene = new Scene(uiPane);
+    private Scene scene = new Scene(uiPane,500,500);
     private GuiGrid guiGrid;
     private Simulator sim;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         initSimulator(Simulator.generateRace());
+        uiPane.setAlignment(Pos.CENTER);
         uiPane.add(guiGrid, 0, 0);
         uiPane.add(stepBtn, 0, 1);
         scene.getStylesheets().add("./stylesheet.css");

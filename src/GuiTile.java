@@ -6,10 +6,10 @@ public class GuiTile extends Label {
 
     public GuiTile(types type) {
         super("");
-        setPrefSize(50, 50); //TODO: re-think the sizing of our app (We don't need to dynamically change.)
+        setPrefSize(100, 100); //TODO: re-think the sizing of our app (We don't need to dynamically change.)
         if (type==types.CAR) {
             this.getStyleClass().add("car");
-            Image img = new Image("./car.jpg", 50, 50, true, false);
+            Image img = new Image("car.jpg", 50, 50, true, false);
             setGraphic(new ImageView(img));
         }
         if (type==types.STREET)
