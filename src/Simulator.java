@@ -40,11 +40,11 @@ public class Simulator {
         HashMap<Pair, Tile> map = new HashMap<Pair, Tile>();
         Car car = new Car(
                 0, 0,
-                new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 0))),
+                new ArrayList<>(Arrays.asList(new Pair(3,0), new Pair(0, 0))),
                 map);
         Car car1 = new Car(
                 1, 0,
-                new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 1))),
+                new ArrayList<>(Arrays.asList(new Pair(3,0), new Pair(0, 1))),
                 map);
 
 

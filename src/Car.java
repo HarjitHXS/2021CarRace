@@ -24,6 +24,7 @@ public class Car extends Tile {
     }
 
     private Pair nextPoint() {
+        if (hasFinished()) return new Pair(x,y);
         return goalPath.get(pathIndex);
     }
 
@@ -32,12 +33,12 @@ public class Car extends Tile {
      * @return true if the racer has moved, false otherwise (racer already finished.)
      */
     public boolean drive() {
-        if (nextPoint().equals(new Pair(x, y)))
-            pathIndex += 1; // We now aim to the next checkpoint.
         if (hasFinished()) return false;
         Pair nextMove = nextMove();
         x = nextMove.getX();
         y = nextMove.getY();
+        if (nextPoint().equals(new Pair(x, y)))
+            pathIndex += 1; // We now aim to the next checkpoint.
 
         return true;
     }
@@ -46,12 +47,10 @@ public class Car extends Tile {
      * @return true if we have to recalculate the path to the next checkpoint, false otherwise.
      */
     private boolean shouldRecalculate() {
-        if (nextMoves.size()==0)
+        if (nextMoves.size()==0 || nextMoveIndex == nextMoves.size())
             return true;
-        Pair nextMove = nextMoves.get(0);
+        Pair nextMove = nextMoves.get(nextMoveIndex);
         if (grid.get(nextMove).getType() != types.STREET)
-            return true;
-        if (nextMoveIndex == nextMoves.size()) // This means we have reached a checkpoint
             return true;
         return false;
     }
@@ -78,6 +77,7 @@ public class Car extends Tile {
         HashSet<Pair> seen = new HashSet<>();
         ArrayDeque<Pair> q = new ArrayDeque<>();
         q.addAll(findAdjacents(start, true));
+        q.add(start); // In some cases, it will be best to stay in same place.
 
         // BFS loop
         while (q.size() != 0) {
