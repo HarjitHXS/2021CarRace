@@ -38,7 +38,11 @@ public class Simulator {
      */
     public final static Simulator generateRace() {
         HashMap<Pair, Tile> map = new HashMap<Pair, Tile>();
-        Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(new Pair(5,0))));
+        Car car = new Car(
+                0, 0,
+                new ArrayList<>(Arrays.asList(new Pair(2,1), new Pair(0, 0))),
+                map);
+
         map.put(new Pair(0,0), car);
         map.put(new Pair(1,0), Tile.EMPTY_TILE);
         map.put(new Pair(2,0), Tile.EMPTY_TILE);
