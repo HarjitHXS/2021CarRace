@@ -37,35 +37,32 @@ public class Simulator {
      * @return
      */
     public final static Simulator generateRace() {
-        HashMap<Pair, Tile> map = new HashMap<Pair, Tile>();
-        Car car = new Car(
-                0, 0,
-                new ArrayList<>(Arrays.asList(new Pair(3,0), new Pair(0, 0))),
-                map);
-        Car car1 = new Car(
-                1, 0,
-                new ArrayList<>(Arrays.asList(new Pair(3,0), new Pair(0, 1))),
-                map);
+        HashMap<Pair, Tile> map = new HashMap<>();
+        Car car = new Car(4, 4, new ArrayList<>(Arrays.asList(
+                new Pair(2, 2), new Pair(3, 1)
+        )), map);
+        ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
+                car,
+                new Car(0, 0, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map),
+                new Car(5, 3, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map)
+        ));
+        return generateHelper(10, 10, cars, map);
+    }
 
+    public final static Simulator generateHelper(int rows, int cols, ArrayList<Car> cars, HashMap<Pair, Tile> map) {
+        // Fill map with empty tiles
+        for (int i=0; i<rows; i++) {
+            for (int j=0; j<cols; j++)
+                map.put(new Pair(i,j), Tile.EMPTY_TILE);
+        }
+        // Add cars
+        for (Car car : cars)
+            map.put(new Pair(car.getX(), car.getY()), car);
 
-        map.put(new Pair(0,0), car);
-        map.put(new Pair(1,0), car1); // In the same place you set its location
-        map.put(new Pair(2,0), Tile.EMPTY_TILE);
-        map.put(new Pair(3,0), Tile.EMPTY_TILE);
-        map.put(new Pair(0,1), Tile.EMPTY_TILE);
-        map.put(new Pair(1,1), Tile.EMPTY_TILE);
-        map.put(new Pair(2,1), Tile.EMPTY_TILE);
-        map.put(new Pair(3,1), Tile.EMPTY_TILE);
-
-
-
-
-
-        Simulator simulator = new Simulator(
-                new ArrayList<>(Arrays.asList(car,car1)),
+        return new Simulator(
+                cars,
                 map
         );
-        return simulator;
     }
 
     public HashMap<Pair, Tile> getGrid() {

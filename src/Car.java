@@ -124,7 +124,12 @@ public class Car extends Tile {
             new Pair(pair.getX(), pair.getY()-1),
             new Pair(pair.getX(), pair.getY()+1),
             new Pair(pair.getX()+1, pair.getY()),
-            new Pair(pair.getX()-1, pair.getY())
+            new Pair(pair.getX()-1, pair.getY()),
+            new Pair(pair.getX()-1, pair.getY()-1),
+            new Pair(pair.getX()+1, pair.getY()+1),
+            new Pair(pair.getX()-1, pair.getY()+1),
+            new Pair(pair.getX()-1, pair.getY()-1)
+
         );
         // Add the valid ones, or all if !validOnly.
         for (Pair p : directions) {
