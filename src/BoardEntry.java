@@ -7,6 +7,7 @@ public class BoardEntry {
         this.time = time;
     }
 
+
     public Car getRacer() {
         return car;
     }

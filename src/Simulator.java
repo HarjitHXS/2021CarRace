@@ -25,9 +25,11 @@ public class Simulator {
             // make the cars move:
             //TODO: Check the return of racer.drive(), and add to leaderboard if its false.
             car.drive();
+            time+=1;
             int newX = car.getX();
             int newY = car.getY();
             grid.put(new Pair(newX, newY), car);
+            if(car.hasFinished())leaderBoard.add(new BoardEntry(car,time));
         }
     }
 
