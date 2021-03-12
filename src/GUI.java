@@ -19,7 +19,7 @@ public class GUI extends Application {
     private Button play = new Button("   Play   ");
     private Button stepBtn = new Button(" Start ");
     private Button quit = new Button(" Quit ");
-    private Scene scene = new Scene(uiPane,700,550);
+    private Scene scene = new Scene(uiPane);
     private GuiGrid guiGrid;
     private Simulator sim;
 
@@ -49,8 +49,7 @@ public class GUI extends Application {
         initSimulator(Simulator.generateRace());
         uiPane.add(guiGrid, 0, 0);
         uiPane.add(stepBtn, 0, 1);
-        uiPane.add(quit,100,100);
-        uiPane.setAlignment(Pos.CENTER);
+        uiPane.add(quit,1,1);
         scene.getStylesheets().add("./stylesheet.css");
 
 
@@ -62,7 +61,7 @@ public class GUI extends Application {
         });
         quit.setOnAction(e -> closeGame());
 
-        scene1 = new Scene(firstscene, 610, 410);
+        scene1 = new Scene(firstscene);
         window.setScene(scene1);
         window.show();
     }
