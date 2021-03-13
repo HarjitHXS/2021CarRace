@@ -70,4 +70,11 @@ public class Simulator {
     public HashMap<Pair, Tile> getGrid() {
         return grid;
     }
+
+    public ArrayList<Pair> getPath(Pair inputPair) {
+        Tile tile =  grid.get(inputPair);
+        if (!(tile instanceof Car)) return null;
+        Car car = (Car) tile;
+        return car.getNextMoves();
+    }
 }

@@ -141,6 +141,10 @@ public class Car extends Tile {
         return validAdjacents;
     }
 
+    public ArrayList<Pair> getNextMoves() {
+        return nextMoves;
+    }
+
     public int getX() {
         return x;
     }
