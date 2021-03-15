@@ -34,7 +34,7 @@ public class GUI extends Application {
         firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         play.setStyle("-fx-background-color: YELLOW");
         ImageView view = new ImageView();
-        Image img = new Image("car1.jpg", 600, 400, false, false);
+        Image img = new Image("carbackground.jpg", 600, 400, false, false);
         view.setImage(img);
         firstscene.getChildren().add(view);
         play.setTranslateX(200);

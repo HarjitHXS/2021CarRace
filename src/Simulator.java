@@ -55,7 +55,7 @@ public class Simulator {
         // Fill map with empty tiles
         for (int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++)
-                map.put(new Pair(i,j), Tile.EMPTY_TILE);
+                map.put(new Pair(i,j), Tile.GRASS_TILE);
         }
         // Add cars
         for (Car car : cars)
