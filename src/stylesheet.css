@@ -10,7 +10,6 @@
 }
 
 .grass {
-    -fx-border-color: lightgreen;
     -fx-border-width: 0 0 1 1;
     -fx-background-color: lightgreen;
 }
