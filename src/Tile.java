@@ -19,4 +19,4 @@ public class Tile {
     }
 }
 
-enum types {CAR, STREET};
+enum types {CAR, STREET, GRASS};
