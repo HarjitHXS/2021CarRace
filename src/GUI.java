@@ -3,6 +3,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -20,8 +23,13 @@ public class GUI extends Application {
     private Button stepBtn = new Button(" Start ");
     private Button quit = new Button(" Quit ");
     private Scene scene = new Scene(uiPane);
+    private Image img = new Image("car1.jpg", 600, 400, false, false);
+    private ImageView view = new ImageView();
+    private TabPane tabPane = new TabPane();
     private GuiGrid guiGrid;
     private Simulator sim;
+    private Label board = new Label((sim.getLeaderBoard()));
+    private Tab tab1 = new Tab("LeaderBoard", board);
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -33,8 +41,7 @@ public class GUI extends Application {
 
         firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         play.setStyle("-fx-background-color: YELLOW");
-        ImageView view = new ImageView();
-        Image img = new Image("car1.jpg", 600, 400, false, false);
+
         view.setImage(img);
         firstscene.getChildren().add(view);
         play.setTranslateX(200);
@@ -50,8 +57,10 @@ public class GUI extends Application {
         uiPane.add(guiGrid, 0, 0);
         uiPane.add(stepBtn, 0, 1);
         uiPane.add(quit,1,1);
+        uiPane.add(tabPane, 1, 0);
         scene.getStylesheets().add("./stylesheet.css");
-
+        tab1.setClosable(false);
+        tabPane.getTabs().add(tab1);
 
 
         stepBtn.setOnMouseClicked(e -> {
@@ -67,7 +76,7 @@ public class GUI extends Application {
     }
     private void closeGame(){
         JOptionPane result = new JOptionPane();
-        int dialogResult = JOptionPane.showConfirmDialog(result, "Are you sure you to Quit?",
+        int dialogResult = JOptionPane.showConfirmDialog(result, "Are you sure want to Quit?",
                 "Quit", JOptionPane.YES_NO_OPTION);
         if (dialogResult == JOptionPane.NO_OPTION)
             ;

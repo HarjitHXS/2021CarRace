@@ -77,4 +77,8 @@ public class Simulator {
         Car car = (Car) tile;
         return car.getNextMoves();
     }
+    public ArrayList<BoardEntry> getLeaderBoard() {
+
+        return leaderBoard;
+    }
 }
