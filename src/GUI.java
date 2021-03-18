@@ -2,10 +2,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -36,11 +33,14 @@ public class GUI extends Application {
         Stage window = primaryStage;
 
         window.setTitle("Car-Racing");
+        window.getIcons().add(new Image("carsideview.jpg"));
+
 
         //Scene-One code Here
 
         firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         play.setStyle("-fx-background-color: YELLOW");
+        play.setTooltip(new Tooltip("Click here to play"));
         view.setImage(img);
         firstscene.getChildren().add(view);
         play.setTranslateX(200);
@@ -51,7 +51,8 @@ public class GUI extends Application {
         play.setOnAction(e -> window.setScene(scene));
 
      //Scene-two code Here
-
+        stepBtn.setTooltip(new Tooltip("Click here to Start game"));
+        quit.setTooltip(new Tooltip("Click here to Quit"));
         initSimulator(Simulator.generateRace());
         uiPane.add(guiGrid, 0, 0);
         uiPane.add(stepBtn, 0, 1);
@@ -63,6 +64,7 @@ public class GUI extends Application {
 
 
         stepBtn.setOnMouseClicked(e -> {
+
                 sim.step();
                 guiGrid.update();
                 updateLeaderBoard();
