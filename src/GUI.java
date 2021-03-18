@@ -28,7 +28,7 @@ public class GUI extends Application {
     private TabPane tabPane = new TabPane();
     private GuiGrid guiGrid;
     private Simulator sim;
-    private Label board = new Label((sim.getLeaderBoard()));
+    private Label board = new Label();
     private Tab tab1 = new Tab("LeaderBoard", board);
 
     @Override
@@ -66,6 +66,7 @@ public class GUI extends Application {
         stepBtn.setOnMouseClicked(e -> {
                 sim.step();
                 guiGrid.update();
+                updateLeaderBoard();
 
         });
         quit.setOnAction(e -> closeGame());
@@ -73,6 +74,15 @@ public class GUI extends Application {
         scene1 = new Scene(firstscene);
         window.setScene(scene1);
         window.show();
+    }
+    private void updateLeaderBoard() {
+        StringBuilder sb = new StringBuilder();
+        for (int i=1; i <= sim.getLeaderBoard().size(); i++) {
+            BoardEntry entry = sim.getLeaderBoard().get(i-1);
+            sb.append(i + ". " + entry.getRacer().getName() + " " + entry.getTime() + " seconds.\n");
+        }
+        board.setText(sb.toString());
+
     }
     private void closeGame(){
         JOptionPane result = new JOptionPane();
@@ -83,6 +93,7 @@ public class GUI extends Application {
         else
             System.exit(0);
     }
+
 
     private void initSimulator(Simulator sim) {
         this.sim = sim;

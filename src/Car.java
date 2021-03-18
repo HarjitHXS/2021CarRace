@@ -154,7 +154,7 @@ public class Car extends Tile {
     public int getY() {
         return y;
     }
-    public String getname() {
+    public String getName() {
         return name;
     }
 }
