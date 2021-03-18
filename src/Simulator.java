@@ -19,6 +19,7 @@ public class Simulator {
         // Remove all cars from the map (so they can update their position.)
         //TODO: Consider changing this to check that cars don't make an invalid move (Maybe change the Racer.drive() method too)
         for (Car car : cars) {
+            if (car.hasFinished()) continue; // This prevents adding the same car multiple times.
             int x = car.getX();
             int y = car.getY();
             grid.put(new Pair(x, y), Tile.EMPTY_TILE); // Replace the old location with empty tile.
