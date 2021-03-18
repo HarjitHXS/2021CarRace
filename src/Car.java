@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.*;
 
 public class Car extends Tile {
@@ -8,14 +10,16 @@ public class Car extends Tile {
     private ArrayList<Pair> nextMoves = new ArrayList<>();
     private int nextMoveIndex = 0;
     private HashMap<Pair, Tile> grid;
+    private Color carColor;
 
 
-    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid) {
+    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, Color color) {
         super(types.CAR);
         this.x = x;
         this.y = y;
         this.goalPath = goalPath;
         this.grid = grid;
+        this.carColor = color;
     }
 
 
@@ -156,4 +160,6 @@ public class Car extends Tile {
     public int getY() {
         return y;
     }
+
+    public Color getCarColor(){ return carColor; }
 }

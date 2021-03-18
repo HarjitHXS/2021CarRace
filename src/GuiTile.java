@@ -1,6 +1,7 @@
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 public class GuiTile extends Label {
 
@@ -17,5 +18,16 @@ public class GuiTile extends Label {
         if( type == types.GRASS){
             this.getStyleClass().add("grass");
         }
+    }
+
+    public GuiTile(Color color){
+        super("");
+        setPrefSize(60, 60);
+        if(color == Color.GREEN)
+            this.getStyleClass().add("highlight-green");
+        if(color == Color.BLUE)
+            this.getStyleClass().add("highlight-blue");
+        if(color == Color.RED)
+            this.getStyleClass().add("highlight-red");
     }
 }

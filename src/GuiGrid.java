@@ -1,6 +1,7 @@
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,6 @@ public class GuiGrid extends GridPane {
             child.setOnMouseClicked(event -> {
                 ArrayList<Pair> pathList = Simulator.getPath(pair, simMap);
 
-
             });
 
         }
@@ -38,6 +38,28 @@ public class GuiGrid extends GridPane {
             Node child = new GuiTile((tile.getType()));
             add(child, pair.getX(), pair.getY());
             child.setOnMouseClicked(event -> Simulator.getPath(pair, simMap));
+        }
+    }
+
+    public void highlightPath(ArrayList<Pair> pathList, Color color){
+        this.getChildren().clear();
+        nodesMap = new HashMap<>();
+        for (Map.Entry<Pair, Tile> entry: simMap.entrySet()){
+            Pair pair = entry.getKey();
+            Tile tile = entry.getValue();
+            if(tile.getType() != types.STREET && tile.getType() != types.GRASS && tile.getType() != types.CAR) {
+                Node highlightTile = new GuiTile(color);
+            }
+            else{
+                Node child = new GuiTile((tile.getType()));
+                add(child, pair.getX(), pair.getY());
+                child.setOnMouseClicked(event -> Simulator.getPath(pair, simMap));
+
+            }
+
+
+
+
         }
     }
 

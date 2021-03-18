@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.*;
 
 public class Simulator {
@@ -42,11 +44,11 @@ public class Simulator {
         HashMap<Pair, Tile> map = new HashMap<>();
         Car car = new Car(5, 8, new ArrayList<>(Arrays.asList(
                 new Pair(2, 2), new Pair(3, 1)
-        )), map);
+        )), map, Color.RED);
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-                new Car(3, 6, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map),
-                new Car(5, 0, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map)
+                new Car(3, 6, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map, Color.BLUE),
+                new Car(5, 0, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map, Color.GREEN)
         ));
         return generateHelper(10, 10, cars, map);
     }
@@ -80,6 +82,9 @@ public class Simulator {
         if ((tile instanceof Car)) {
             Car car = (Car) tile;
             System.out.println("x : " + ((Car) tile).getX() + " y: " + ((Car) tile).getY());
+            for(Pair p : car.getNextMoves()){
+                System.out.println(p.toString());
+            }
             return car.getNextMoves();
         }
         else
