@@ -40,13 +40,13 @@ public class Simulator {
      */
     public final static Simulator generateRace() {
         HashMap<Pair, Tile> map = new HashMap<>();
-        Car car = new Car(4, 4, new ArrayList<>(Arrays.asList(
+        Car car = new Car(5, 8, new ArrayList<>(Arrays.asList(
                 new Pair(2, 2), new Pair(3, 1)
         )), map);
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-                new Car(0, 0, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map),
-                new Car(5, 3, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map)
+                new Car(3, 6, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map),
+                new Car(5, 0, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map)
         ));
         return generateHelper(10, 10, cars, map);
     }
@@ -75,10 +75,16 @@ public class Simulator {
         return grid;
     }
 
-    public ArrayList<Pair> getPath(Pair inputPair) {
+    public static ArrayList<Pair> getPath(Pair inputPair, HashMap<Pair, Tile> grid) {
         Tile tile =  grid.get(inputPair);
-        if (!(tile instanceof Car)) return null;
-        Car car = (Car) tile;
-        return car.getNextMoves();
+        if ((tile instanceof Car)) {
+            Car car = (Car) tile;
+            System.out.println("x : " + ((Car) tile).getX() + " y: " + ((Car) tile).getY());
+            return car.getNextMoves();
+        }
+        else
+            return null;
+
+
     }
 }

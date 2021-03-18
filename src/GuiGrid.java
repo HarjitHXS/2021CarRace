@@ -2,6 +2,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,12 @@ public class GuiGrid extends GridPane {
             Tile tile = entry.getValue();
             GuiTile child = new GuiTile(tile.getType());
             add(child, pair.getX(), pair.getY());
-            child.setOnMouseClicked(event -> System.out.println(pair.toString()));
+            child.setOnMouseClicked(event -> {
+                ArrayList<Pair> pathList = Simulator.getPath(pair, simMap);
+
+
+            });
+
         }
     }
 
@@ -31,6 +37,7 @@ public class GuiGrid extends GridPane {
             Tile tile = entry.getValue();
             Node child = new GuiTile((tile.getType()));
             add(child, pair.getX(), pair.getY());
+            child.setOnMouseClicked(event -> Simulator.getPath(pair, simMap));
         }
     }
 
