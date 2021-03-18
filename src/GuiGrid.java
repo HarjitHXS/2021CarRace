@@ -17,7 +17,9 @@ public class GuiGrid extends GridPane {
         for (Map.Entry<Pair, Tile> entry: simMap.entrySet()){
             Pair pair = entry.getKey();
             Tile tile = entry.getValue();
-            add(new GuiTile(tile.getType()), pair.getX(), pair.getY());
+            GuiTile child = new GuiTile(tile.getType());
+            add(child, pair.getX(), pair.getY());
+            child.setOnMouseClicked(event -> System.out.println(pair.toString()));
         }
     }
 
@@ -27,7 +29,8 @@ public class GuiGrid extends GridPane {
         for (Map.Entry<Pair, Tile> entry: simMap.entrySet()){
             Pair pair = entry.getKey();
             Tile tile = entry.getValue();
-            add(new GuiTile(tile.getType()), pair.getX(), pair.getY());
+            Node child = new GuiTile((tile.getType()));
+            add(child, pair.getX(), pair.getY());
         }
     }
 

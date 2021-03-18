@@ -23,7 +23,7 @@ public class GUI extends Application {
     private Button stepBtn = new Button(" Start ");
     private Button quit = new Button(" Quit ");
     private Scene scene = new Scene(uiPane);
-    private Image img = new Image("car1.jpg", 600, 400, false, false);
+    private Image img = new Image("carbackground.jpg", 600, 400, false, false);
     private ImageView view = new ImageView();
     private TabPane tabPane = new TabPane();
     private GuiGrid guiGrid;
@@ -41,7 +41,6 @@ public class GUI extends Application {
 
         firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         play.setStyle("-fx-background-color: YELLOW");
-
         view.setImage(img);
         firstscene.getChildren().add(view);
         play.setTranslateX(200);

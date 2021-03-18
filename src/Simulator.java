@@ -57,6 +57,10 @@ public class Simulator {
             for (int j=0; j<cols; j++)
                 map.put(new Pair(i,j), Tile.EMPTY_TILE);
         }
+
+        // Make a grass patch down the middle
+        for (int i=0; i<rows/2; i++)
+            map.put(new Pair(cols/2, i), Tile.GRASS_TILE);
         // Add cars
         for (Car car : cars)
             map.put(new Pair(car.getX(), car.getY()), car);

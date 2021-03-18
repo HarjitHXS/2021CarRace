@@ -8,6 +8,8 @@
 
 public class Tile {
     public final static Tile EMPTY_TILE = new Tile(types.STREET);
+
+    public final static Tile GRASS_TILE = new Tile(types.GRASS);
     private types type;
 
     public Tile(types type) {
@@ -19,4 +21,4 @@ public class Tile {
     }
 }
 
-enum types {CAR, STREET};
+enum types {CAR, STREET, GRASS};
