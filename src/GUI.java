@@ -37,20 +37,9 @@ public class GUI extends Application {
 
 
         //Scene-One code Here
+        showIntroScene(primaryStage);
 
-        firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
-        play.setStyle("-fx-background-color: YELLOW");
-        play.setTooltip(new Tooltip("Click here to play"));
-        view.setImage(img);
-        firstscene.getChildren().add(view);
-        play.setTranslateX(200);
-        play.setTranslateY(140);
-        senceone.add(play, 0, 1, 1, 1);
-        senceone.setAlignment(Pos.CENTER);
-        firstscene.getChildren().addAll(senceone);
-        play.setOnAction(e -> window.setScene(scene));
-
-     //Scene-two code Here
+        //Scene-two code Here
         stepBtn.setTooltip(new Tooltip("Click here to Start game"));
         quit.setTooltip(new Tooltip("Click here to Quit"));
         initSimulator(Simulator.generateRace());
@@ -76,6 +65,8 @@ public class GUI extends Application {
         window.setScene(scene1);
         window.show();
     }
+
+
     private void updateLeaderBoard() {
         StringBuilder sb = new StringBuilder();
         for (int i=1; i <= sim.getLeaderBoard().size(); i++) {
@@ -99,5 +90,19 @@ public class GUI extends Application {
     private void initSimulator(Simulator sim) {
         this.sim = sim;
         guiGrid = new GuiGrid(sim.getGrid());
+    }
+
+    private void showIntroScene(Stage window) {
+        firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        play.setStyle("-fx-background-color: YELLOW");
+        play.setTooltip(new Tooltip("Click here to play"));
+        view.setImage(img);
+        firstscene.getChildren().add(view);
+        play.setTranslateX(200);
+        play.setTranslateY(140);
+        senceone.add(play, 0, 1, 1, 1);
+        senceone.setAlignment(Pos.CENTER);
+        firstscene.getChildren().addAll(senceone);
+        play.setOnAction(e -> window.setScene(scene));
     }
 }
