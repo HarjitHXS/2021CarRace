@@ -12,16 +12,11 @@ import javafx.stage.Stage;
 import javax.swing.*;
 
 public class GUI extends Application {
-    Scene scene1;
     private GridPane uiPane = new GridPane();
-    private StackPane firstscene = new StackPane ();
-    private GridPane senceone = new GridPane();
     private Button play = new Button("   Play   ");
     private Button stepBtn = new Button(" Start ");
     private Button quit = new Button(" Quit ");
     private Scene scene = new Scene(uiPane);
-    private Image img = new Image("carbackground.jpg", 600, 400, false, false);
-    private ImageView view = new ImageView();
     private TabPane tabPane = new TabPane();
     private GuiGrid guiGrid;
     private Simulator sim;
@@ -60,10 +55,6 @@ public class GUI extends Application {
 
         });
         quit.setOnAction(e -> closeGame());
-
-        scene1 = new Scene(firstscene);
-        window.setScene(scene1);
-        window.show();
     }
 
 
@@ -93,16 +84,19 @@ public class GUI extends Application {
     }
 
     private void showIntroScene(Stage window) {
-        firstscene.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        GridPane root = new GridPane();
+        root.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
         play.setStyle("-fx-background-color: YELLOW");
         play.setTooltip(new Tooltip("Click here to play"));
+        Image img = new Image("carbackground.jpg", 600, 400, true, true);
+        ImageView view = new ImageView();
         view.setImage(img);
-        firstscene.getChildren().add(view);
-        play.setTranslateX(200);
-        play.setTranslateY(140);
-        senceone.add(play, 0, 1, 1, 1);
-        senceone.setAlignment(Pos.CENTER);
-        firstscene.getChildren().addAll(senceone);
+        root.getChildren().add(view);
+        root.add(play, 0, 1);
+        root.setAlignment(Pos.CENTER);
         play.setOnAction(e -> window.setScene(scene));
+        window.setScene(new Scene(root));
+        window.show();
+
     }
 }
