@@ -46,13 +46,8 @@ public class Simulator {
         )), map, "Car1");
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-<<<<<<< HEAD
-                new Car(3, 6, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map),
-                new Car(5, 0, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map)
-=======
                 new Car(0, 0, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map, "Car2"),
                 new Car(5, 3, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map, "Car3")
->>>>>>> HSS
         ));
         return generateHelper(10, 10, cars, map);
     }
