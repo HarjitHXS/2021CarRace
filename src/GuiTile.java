@@ -19,15 +19,4 @@ public class GuiTile extends Label {
             this.getStyleClass().add("grass");
         }
     }
-
-    public GuiTile(Color color){
-        super("");
-        setPrefSize(60, 60);
-        if(color == Color.GREEN)
-            this.getStyleClass().add("highlight-green");
-        if(color == Color.BLUE)
-            this.getStyleClass().add("highlight-blue");
-        if(color == Color.RED)
-            this.getStyleClass().add("highlight-red");
-    }
 }

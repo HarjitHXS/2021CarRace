@@ -11,15 +11,17 @@ public class Car extends Tile {
     private int nextMoveIndex = 0;
     private HashMap<Pair, Tile> grid;
     private Color carColor;
+    private String name;
 
 
-    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, Color color) {
+    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, String name, Color color) {
         super(types.CAR);
         this.x = x;
         this.y = y;
         this.goalPath = goalPath;
         this.grid = grid;
         this.carColor = color;
+        this.name = name;
     }
 
 
@@ -160,6 +162,9 @@ public class Car extends Tile {
     public int getY() {
         return y;
     }
-
     public Color getCarColor(){ return carColor; }
+
+    public String getName() {
+        return name;
+    }
 }
