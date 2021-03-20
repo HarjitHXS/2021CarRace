@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.*;
 
 public class Simulator {
@@ -18,6 +20,7 @@ public class Simulator {
     public void step() {
         // Remove all cars from the map (so they can update their position.)
         //TODO: Consider changing this to check that cars don't make an invalid move (Maybe change the Racer.drive() method too)
+        time+=1;
         for (Car car : cars) {
             if (car.hasFinished()) continue; // This prevents adding the same car multiple times.
             int x = car.getX();
@@ -26,7 +29,6 @@ public class Simulator {
             // make the cars move:
             //TODO: Check the return of racer.drive(), and add to leaderboard if its false.
             car.drive();
-            time+=1;
             int newX = car.getX();
             int newY = car.getY();
             grid.put(new Pair(newX, newY), car);
@@ -41,13 +43,13 @@ public class Simulator {
      */
     public final static Simulator generateRace() {
         HashMap<Pair, Tile> map = new HashMap<>();
-        Car car = new Car(5, 8, new ArrayList<>(Arrays.asList(
-                new Pair(2, 2), new Pair(3, 1)
-        )), map, "Car1");
+        Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(
+                new Pair(0, 7), new Pair(3, 1)
+        )), map, "Car1", Color.RED);
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-                new Car(0, 0, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map, "Car2"),
-                new Car(5, 3, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map, "Car3")
+                new Car(3, 6, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map, "Car2",Color.BLUE),
+                new Car(5, 0, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map, "Car3",Color.GREEN)
         ));
         return generateHelper(10, 10, cars, map);
     }
@@ -81,6 +83,9 @@ public class Simulator {
         if ((tile instanceof Car)) {
             Car car = (Car) tile;
             System.out.println("x : " + ((Car) tile).getX() + " y: " + ((Car) tile).getY());
+            for(Pair p : car.getNextMoves()){
+                System.out.println(p.toString());
+            }
             return car.getNextMoves();
         }
         else

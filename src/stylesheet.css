@@ -13,3 +13,20 @@
     -fx-border-width: 0 0 1 1;
     -fx-background-color: lightgreen;
 }
+
+.highlight-green {
+    -fx-border-width: 0 0 1 1;
+    -fx-background-color: green;
+}
+
+.highlight-red {
+    -fx-border-width: 0 0 1 1;
+    -fx-background-color: red;
+}
+
+.highlight-blue  {
+    -fx-border-width: 0 0 1 1;
+    -fx-background-color: blue;
+}
+
+
