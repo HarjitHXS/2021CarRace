@@ -22,9 +22,16 @@ public class GuiGrid extends GridPane {
 
     private void highlightSelectedPath() {
         if (selectedCar == null) return;
+
         for (Pair p : selectedCar.getNextMoves()) {
             Node node = nodesMap.get(p);
-            node.getStyleClass().add("highlight-blue");
+            if(selectedCar.getCarColor() == Color.GREEN)
+                node.getStyleClass().add("highlight-green");
+            if(selectedCar.getCarColor() == Color.RED)
+                node.getStyleClass().add("highlight-red");
+            if(selectedCar.getCarColor() == Color.BLUE)
+                node.getStyleClass().add("highlight-blue");
+
         }
     }
 
@@ -44,7 +51,6 @@ public class GuiGrid extends GridPane {
         }
         highlightSelectedPath();
     }
-
 
     @Override
     public void add(Node child, int columnIndex, int rowIndex) {

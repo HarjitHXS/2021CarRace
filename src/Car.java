@@ -169,6 +169,7 @@ public class Car extends Tile {
     public int getY() {
         return y;
     }
+
     public Color getCarColor(){ return carColor; }
 
     public String getName() {
