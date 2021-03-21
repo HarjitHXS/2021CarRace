@@ -36,10 +36,10 @@ public class GUI extends Application {
         //Scene-One code Here
         showIntroScene(primaryStage);
 
-        //Scene-Three code Here
+        //Scene-Two code Here
         stepBtn.setTooltip(new Tooltip("Click here to Start game"));
         quit.setTooltip(new Tooltip("Click here to Quit"));
-        initSimulator(Simulator.generateRace());
+        initSimulator(Simulator.generateRace(gameCreator.getTilesMap()));
         uiPane.add(gameCreator, 0, 0);
         uiPane.add(stepBtn, 0, 1);
         uiPane.add(quit,1,1);
@@ -51,7 +51,7 @@ public class GUI extends Application {
 
 
         stepBtn.setOnMouseClicked(e -> {
-
+                stepBtn.setText("Step");
                 sim.step();
                 guiGrid.update();
                 updateLeaderBoard();

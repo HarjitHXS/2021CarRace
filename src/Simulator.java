@@ -41,17 +41,17 @@ public class Simulator {
      * (This is just temporary, but shows how the map is made.)
      * @return
      */
-    public final static Simulator generateRace() {
-        HashMap<Pair, Tile> map = new HashMap<>();
+    public final static Simulator generateRace(HashMap<Pair, Tile> gameBoard) {
         Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(
                 new Pair(0, 7), new Pair(3, 1)
-        )), map, "Car1", Color.RED, 2);
+        )), gameBoard, "Car1", Color.RED, 2);
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-                new Car(0, 7, new ArrayList(Arrays.asList(new Pair(6,5), new Pair(8, 2))), map, "Car2",Color.BLUE, 1),
-                new Car(0, 8, new ArrayList(Arrays.asList(new Pair(6, 7), new Pair(3,3))), map, "Car3",Color.GREEN, 1)
+                new Car(0, 7, new ArrayList(Arrays.asList(new Pair(6,5), new Pair(8, 2))), gameBoard, "Car2",Color.BLUE, 1),
+                new Car(0, 8, new ArrayList(Arrays.asList(new Pair(6, 7), new Pair(3,3))), gameBoard, "Car3",Color.GREEN, 1)
         ));
-        return generateHelper(10, 10, cars, map);
+
+        return generateHelper(10, 10, cars, gameBoard);
     }
 
     public final static Simulator generateHelper(int rows, int cols, ArrayList<Car> cars, HashMap<Pair, Tile> map) {
@@ -60,10 +60,6 @@ public class Simulator {
             for (int j=0; j<cols; j++)
                 map.put(new Pair(i,j), Tile.EMPTY_TILE);
         }
-
-        // Make a grass patch down the middle
-        for (int i=0; i<rows/2; i++)
-            map.put(new Pair(cols/2, i), Tile.GRASS_TILE);
         // Add cars
         for (Car car : cars)
             map.put(new Pair(car.getX(), car.getY()), car);

@@ -1,6 +1,5 @@
-import javafx.event.EventType;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ public class GameCreator extends GridPane{
     private int columns;
     private int rows;
     private Tile selectedTile = Tile.GRASS_TILE; // When user clicks on a tile, it will be replaced with this.
+    private Button toggleSelection = new Button("Add Grass");
     private HashMap<Pair, Tile> tilesMap;
 
     public GameCreator(int columns, int rows){
@@ -21,6 +21,17 @@ public class GameCreator extends GridPane{
         tilesMap = createTileMap();
         this.guiGrid = new GuiGrid(tilesMap);
         add(guiGrid, 0, 0);
+        add(toggleSelection,0,2);
+        toggleSelection.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if(toggleSelection.getText().equals("Add Grass")) {
+                toggleSelection.setText("Add Street");
+                selectedTile = Tile.EMPTY_TILE;
+            }
+            else if(toggleSelection.getText().equals("Add Street")) {
+                toggleSelection.setText("Add Grass");
+                selectedTile = Tile.GRASS_TILE;
+            }
+        });
         addOnClicks();
     }
 
@@ -62,5 +73,7 @@ public class GameCreator extends GridPane{
     public GuiGrid getGuiGrid() {
         return guiGrid;
     }
+
+    public HashMap<Pair, Tile> getTilesMap(){ return tilesMap; }
 
 }
