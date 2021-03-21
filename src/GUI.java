@@ -96,6 +96,6 @@ public class GUI extends Application {
         play.setOnAction(e -> window.setScene(scene));
         window.setScene(new Scene(root));
         window.show();
-
     }
+
 }
