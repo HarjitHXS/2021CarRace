@@ -22,6 +22,9 @@ public class GUI extends Application {
     private Simulator sim;
     private Label board = new Label();
     private Tab tab1 = new Tab("LeaderBoard", board);
+    private GridPane userSettings = new GridPane();
+    private Scene userSettingsScene = new Scene(userSettings);
+    private GameCreator gameCreator;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -33,7 +36,10 @@ public class GUI extends Application {
         //Scene-One code Here
         showIntroScene(primaryStage);
 
-        //Scene-two code Here
+        //Scene-Two code Here
+        showUserSettingsScene(primaryStage);
+
+        //Scene-Three code Here
         stepBtn.setTooltip(new Tooltip("Click here to Start game"));
         quit.setTooltip(new Tooltip("Click here to Quit"));
         initSimulator(Simulator.generateRace());
@@ -93,9 +99,24 @@ public class GUI extends Application {
         root.getChildren().add(view);
         root.add(play, 0, 1);
         root.setAlignment(Pos.CENTER);
-        play.setOnAction(e -> window.setScene(scene));
+        play.setOnAction(e -> window.setScene(userSettingsScene));
         window.setScene(new Scene(root));
         window.show();
+    }
+
+    private void showUserSettingsScene(Stage window){
+        gameCreator = new GameCreator();
+        userSettings.add(gameCreator, 0, 0);
+        Button playButton = new Button("Play game with these settings");
+        playButton.setOnMouseClicked(event -> {
+            window.setScene(scene);
+        });
+        userSettings.add(playButton, 0, 3);
+        userSettingsScene.getStylesheets().add("./stylesheet.css");
+        Button grassButton = new Button("Add Grass");
+        Button carButton = new Button("Add Car");
+        userSettings.add(grassButton, 0, 1);
+        userSettings.add(carButton, 0, 2);
     }
 
 }
