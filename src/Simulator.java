@@ -78,21 +78,6 @@ public class Simulator {
         return grid;
     }
 
-    public static ArrayList<Pair> getPath(Pair inputPair, HashMap<Pair, Tile> grid) {
-        Tile tile =  grid.get(inputPair);
-        if ((tile instanceof Car)) {
-            Car car = (Car) tile;
-            System.out.println("x : " + ((Car) tile).getX() + " y: " + ((Car) tile).getY());
-            for(Pair p : car.getNextMoves()){
-                System.out.println(p.toString());
-            }
-            return car.getNextMoves();
-        }
-        else
-            return null;
-
-
-    }
     public ArrayList<BoardEntry> getLeaderBoard() {
 
         return leaderBoard;
