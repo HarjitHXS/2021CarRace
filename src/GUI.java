@@ -18,10 +18,13 @@ public class GUI extends Application {
     private Button quit = new Button(" Quit ");
     private Scene scene = new Scene(uiPane);
     private TabPane tabPane = new TabPane();
+    private TabPane tabPane2 = new TabPane();
     private GuiGrid guiGrid;
     private Simulator sim;
     private Label board = new Label();
+    private Label instruct = new Label();
     private Tab tab1 = new Tab("LeaderBoard", board);
+    private Tab tab2 = new Tab("Instructions", instruct);
     private GridPane userSettings = new GridPane();
     private Scene userSettingsScene = new Scene(userSettings);
     private GameCreator gameCreator;
@@ -111,12 +114,23 @@ public class GUI extends Application {
         playButton.setOnMouseClicked(event -> {
             window.setScene(scene);
         });
-        userSettings.add(playButton, 0, 3);
-        userSettingsScene.getStylesheets().add("./stylesheet.css");
+
         Button grassButton = new Button("Add Grass");
         Button carButton = new Button("Add Car");
         userSettings.add(grassButton, 0, 1);
-        userSettings.add(carButton, 0, 2);
+        userSettings.add(carButton, 0, 1);
+        carButton.setTranslateX(100);
+        userSettings.add(playButton, 0, 1);
+        playButton.setTranslateX(200);
+
+        userSettingsScene.getStylesheets().add("./stylesheet.css");
+        tab2.setClosable(false);
+        tabPane2.getTabs().add(tab2);
+        userSettings.add(tabPane2, 1, 0);
+        instruct.setWrapText(true);
+        instruct.setMaxWidth(100);
+        instruct.setMinHeight(40);
+        instruct.setText(gameCreator.toString());
     }
 
 }
