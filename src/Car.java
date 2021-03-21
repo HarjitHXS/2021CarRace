@@ -159,7 +159,11 @@ public class Car extends Tile {
     }
 
     public ArrayList<Pair> getNextMoves() {
-        return nextMoves;
+        ArrayList<Pair> output = new ArrayList<>();
+        for(int i = nextMoveIndex; i < nextMoves.size(); i++) {
+            output.add(nextMoves.get(i));
+        }
+        return output;
     }
 
     public int getX() {
