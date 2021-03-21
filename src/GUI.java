@@ -25,10 +25,9 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Stage window = primaryStage;
 
-        window.setTitle("Car-Racing");
-        window.getIcons().add(new Image("carsideview.jpg"));
+        primaryStage.setTitle("Car-Racing");
+        primaryStage.getIcons().add(new Image("carbackground.jpg"));
 
 
         //Scene-One code Here
