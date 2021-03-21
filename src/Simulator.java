@@ -45,11 +45,11 @@ public class Simulator {
         HashMap<Pair, Tile> map = new HashMap<>();
         Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(
                 new Pair(0, 7), new Pair(3, 1)
-        )), map, "Car1", Color.RED);
+        )), map, "Car1", Color.RED, 2);
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-                new Car(3, 6, new ArrayList(Arrays.asList(new Pair(5,5), new Pair(8, 2))), map, "Car2",Color.BLUE),
-                new Car(5, 0, new ArrayList(Arrays.asList(new Pair(1, 2), new Pair(3,3))), map, "Car3",Color.GREEN)
+                new Car(0, 7, new ArrayList(Arrays.asList(new Pair(6,5), new Pair(8, 2))), map, "Car2",Color.BLUE, 1),
+                new Car(0, 8, new ArrayList(Arrays.asList(new Pair(6, 7), new Pair(3,3))), map, "Car3",Color.GREEN, 1)
         ));
         return generateHelper(10, 10, cars, map);
     }

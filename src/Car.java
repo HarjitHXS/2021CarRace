@@ -12,9 +12,11 @@ public class Car extends Tile {
     private HashMap<Pair, Tile> grid;
     private Color carColor;
     private String name;
+    private int slowness; // unit time per move
+    private int timeUntilMove; // Everytime it hits 0, we can move and then reset to slowness.
 
 
-    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, String name, Color color) {
+    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, String name, Color color, int slowness) {
         super(types.CAR);
         this.x = x;
         this.y = y;
@@ -22,6 +24,8 @@ public class Car extends Tile {
         this.grid = grid;
         this.carColor = color;
         this.name = name;
+        this.slowness = slowness;
+        this.timeUntilMove = slowness;
     }
 
 
@@ -38,15 +42,18 @@ public class Car extends Tile {
      * moves the racer to a new location
      * @return true if the racer has moved, false otherwise (racer already finished.)
      */
-    public boolean drive() {
-        if (hasFinished()) return false;
+    public void drive() {
+        timeUntilMove -= 1;
+        if (timeUntilMove != 0)
+            return;
+        else
+            timeUntilMove = slowness; // reset time
+        if (hasFinished()) return;
         Pair nextMove = nextMove();
         x = nextMove.getX();
         y = nextMove.getY();
         if (nextPoint().equals(new Pair(x, y)))
             pathIndex += 1; // We now aim to the next checkpoint.
-
-        return true;
     }
 
     /**
