@@ -1,55 +1,46 @@
+import javafx.event.EventType;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class GameCreator extends GridPane{
 
     private GuiGrid guiGrid;
-    private String optionString;
     private int columns;
     private int rows;
-    private int numOfCars;
+    private Tile selectedTile = Tile.GRASS_TILE; // When user clicks on a tile, it will be replaced with this.
+    private HashMap<Pair, Tile> tilesMap;
 
     public GameCreator(int columns, int rows){
         this.columns = columns;
         this.rows = rows;
-        this.guiGrid = new GuiGrid(createTileMap());
-        this.optionString = "street";
-        this.numOfCars = 0;
-        setupBoard();
+        tilesMap = createTileMap();
+        this.guiGrid = new GuiGrid(tilesMap);
+        add(guiGrid, 0, 0);
+        addOnClicks();
     }
 
-    private void setupBoard(){
-        for(int i = 0; i < columns; i++){
-            for(int j = 0; j < rows; j++){
-                int xCord = i;
-                int yCord = j;
-                //Create a blank grid for the user to pick grass/street/car tiles
-                Label gridSquare = new Label("");
-                gridSquare.setPrefSize(60,60);
-                gridSquare.setStyle("-fx-border-color: black");
-                gridSquare.setOnMouseClicked(event -> {
-                    if(optionString.equals("grass")) {
-                        guiGrid.add(new GuiTile(types.GRASS), xCord, yCord);
-                        System.out.println("Added grass");
-                    }
-                    //node.getStyleClass().add("highlight-green");
-                    if(optionString.equals("car") && numOfCars < 3){
-                        guiGrid.add(new GuiTile(types.CAR), xCord, yCord);
-                        System.out.println("Added car");
-                        numOfCars++;
-                        //node.getStyleClass().add("car");
-                    }
-                    guiGrid.update();
-                });
-                super.add(gridSquare, xCord , yCord);
-            }
-        }
-    }
+    /**
+     * Adds event handlers to the tiles so we can fill them with the selectedTile
+     *
+     */
+    private void addOnClicks() {
+        for (Map.Entry<Pair, Node> entry: guiGrid.getNodesMap().entrySet())
+            entry.getValue().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                // 1.Update tileMap
+                Pair pair = entry.getKey();
+                if (selectedTile != null)
+                    tilesMap.put(pair, selectedTile);
+                // 2. Update Display (GuiGrid)
+                guiGrid.update();
+                //3. Re-add EventHandlers
+                addOnClicks(); // GuiGrid's update will change the Nodes, and they don't have the handler
 
-    public void changeOption(String s){
-        optionString = s;
+            });
     }
 
     private HashMap<Pair, Tile> createTileMap(){
@@ -72,5 +63,4 @@ public class GameCreator extends GridPane{
         return guiGrid;
     }
 
-    public int getNumOfCars(){ return numOfCars; }
 }

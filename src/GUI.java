@@ -18,16 +18,13 @@ public class GUI extends Application {
     private Button quit = new Button(" Quit ");
     private Scene scene = new Scene(uiPane);
     private TabPane tabPane = new TabPane();
-    private TabPane tabPane2 = new TabPane();
     private GuiGrid guiGrid;
     private Simulator sim;
     private Label board = new Label();
     private Label instruct = new Label();
     private Tab tab1 = new Tab("LeaderBoard", board);
     private Tab tab2 = new Tab("Instructions", instruct);
-    private GridPane userSettings = new GridPane();
-    private Scene userSettingsScene = new Scene(userSettings);
-    private GameCreator gameCreator;
+    private GameCreator gameCreator = new GameCreator(10, 10);
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,20 +36,18 @@ public class GUI extends Application {
         //Scene-One code Here
         showIntroScene(primaryStage);
 
-        //Scene-Two code Here
-        showUserSettingsScene(primaryStage);
-
         //Scene-Three code Here
         stepBtn.setTooltip(new Tooltip("Click here to Start game"));
         quit.setTooltip(new Tooltip("Click here to Quit"));
         initSimulator(Simulator.generateRace());
-        uiPane.add(guiGrid, 0, 0);
+        uiPane.add(gameCreator, 0, 0);
         uiPane.add(stepBtn, 0, 1);
         uiPane.add(quit,1,1);
         uiPane.add(tabPane, 1, 0);
         scene.getStylesheets().add("./stylesheet.css");
         tab1.setClosable(false);
         tabPane.getTabs().add(tab1);
+        tabPane.getTabs().add(tab2);
 
 
         stepBtn.setOnMouseClicked(e -> {
@@ -102,41 +97,9 @@ public class GUI extends Application {
         root.getChildren().add(view);
         root.add(play, 0, 1);
         root.setAlignment(Pos.CENTER);
-        play.setOnAction(e -> window.setScene(userSettingsScene));
+        play.setOnAction(e -> window.setScene(scene));
         window.setScene(new Scene(root));
         window.show();
-    }
-
-    private void showUserSettingsScene(Stage window){
-        gameCreator = new GameCreator(10,10);                       //Creating a 10x10 grid
-        userSettings.add(gameCreator, 0, 0);
-        Button playButton = new Button("Play game with these settings");
-        playButton.setOnMouseClicked(event -> {
-            window.setScene(scene);
-        });
-
-        Button grassButton = new Button("Add Grass");
-        grassButton.setOnMouseClicked(event -> {
-            gameCreator.changeOption("grass");
-        });
-        Button carButton = new Button("Add Car");
-        carButton.setOnMouseClicked(event -> {
-            gameCreator.changeOption("car");
-        });
-        userSettings.add(grassButton, 0, 1);
-        userSettings.add(carButton, 0, 1);
-        carButton.setTranslateX(100);
-        userSettings.add(playButton, 0, 1);
-        playButton.setTranslateX(200);
-
-        userSettingsScene.getStylesheets().add("./stylesheet.css");
-        tab2.setClosable(false);
-        tabPane2.getTabs().add(tab2);
-        userSettings.add(tabPane2, 1, 0);
-        instruct.setWrapText(true);
-        instruct.setMaxWidth(100);
-        instruct.setMinHeight(40);
-        instruct.setText(gameCreator.toString());
     }
 
 }
