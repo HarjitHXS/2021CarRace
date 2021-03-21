@@ -58,5 +58,7 @@ public class GuiGrid extends GridPane {
         nodesMap.put(new Pair(columnIndex, rowIndex), child);
     }
 
+    public HashMap<Pair, Node> getNodeMap(){ return nodesMap; }
+
 
 }

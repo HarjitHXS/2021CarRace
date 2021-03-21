@@ -88,7 +88,7 @@ public class GUI extends Application {
 
     private void initSimulator(Simulator sim) {
         this.sim = sim;
-        guiGrid = new GuiGrid(sim.getGrid());
+        guiGrid = gameCreator.getGuiGrid();
     }
 
     private void showIntroScene(Stage window) {
@@ -108,7 +108,7 @@ public class GUI extends Application {
     }
 
     private void showUserSettingsScene(Stage window){
-        gameCreator = new GameCreator();
+        gameCreator = new GameCreator(10,10);                       //Creating a 10x10 grid
         userSettings.add(gameCreator, 0, 0);
         Button playButton = new Button("Play game with these settings");
         playButton.setOnMouseClicked(event -> {
@@ -116,7 +116,13 @@ public class GUI extends Application {
         });
 
         Button grassButton = new Button("Add Grass");
+        grassButton.setOnMouseClicked(event -> {
+            gameCreator.changeOption("grass");
+        });
         Button carButton = new Button("Add Car");
+        carButton.setOnMouseClicked(event -> {
+            gameCreator.changeOption("car");
+        });
         userSettings.add(grassButton, 0, 1);
         userSettings.add(carButton, 0, 1);
         carButton.setTranslateX(100);
