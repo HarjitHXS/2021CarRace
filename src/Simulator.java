@@ -53,9 +53,9 @@ public class Simulator {
 
         //Generating the list of cars
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
-                new Car(0, 0, new ArrayList<>(Arrays.asList(checkpoints.get(0), checkpoints.get(1), checkpoints.get(2), checkpoints.get(3))), gameBoard, "Car1", Color.RED, 2),
-                new Car(0, 7, new ArrayList(Arrays.asList(checkpoints.get(1), checkpoints.get(2), checkpoints.get(3), checkpoints.get(0))), gameBoard, "Car2",Color.BLUE, 1),
-                new Car(0, 8, new ArrayList(Arrays.asList(checkpoints.get(3), checkpoints.get(0), checkpoints.get(1), checkpoints.get(2))), gameBoard, "Car3",Color.GREEN, 1)
+                new Car(0, 0, new ArrayList<>(Arrays.asList(checkpoints.get(0), checkpoints.get(1), checkpoints.get(2), checkpoints.get(3))), gameBoard, "Red Car", "red", 2),
+                new Car(0, 7, new ArrayList(Arrays.asList(checkpoints.get(1), checkpoints.get(2), checkpoints.get(3), checkpoints.get(0))), gameBoard, "Blue Car", "blue", 1),
+                new Car(0, 8, new ArrayList(Arrays.asList(checkpoints.get(3), checkpoints.get(0), checkpoints.get(1), checkpoints.get(2))), gameBoard, "Green Car","green", 1)
         ));
 
         return generateHelper(cars, gameBoard);

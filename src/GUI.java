@@ -29,7 +29,7 @@ public class GUI extends Application {
     private Tab tab1 = new Tab("Instructions", instruct);
     private Tab tab2 = new Tab("LeaderBoard", board);
     private GameCreator gameCreator = new GameCreator(10, 10);
-    private int milliSeconds = 500;
+    private int milliSeconds = 750;
 
     //Written by Saif and edited by Alex
     //GUI frontend was created by Harjit
@@ -87,7 +87,9 @@ public class GUI extends Application {
          */
         animation.setOnFinished(e -> {
             if (sim.raceFinished()) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, sim.getLeaderBoard().get(0).getRacer().getName() + " has won the race!");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText(sim.getLeaderBoard().get(0).getRacer().getName() + " has won the race!");
+                alert.setTitle("Winner");
                 alert.setOnHidden(event -> {
                     System.exit(0);
                 });
