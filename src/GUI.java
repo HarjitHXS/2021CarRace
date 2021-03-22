@@ -26,8 +26,8 @@ public class GUI extends Application {
     private Simulator sim;
     private Label board = new Label();
     private Label instruct = new Label();
-    private Tab tab1 = new Tab("LeaderBoard", board);
-    private Tab tab2 = new Tab("Instructions", instruct);
+    private Tab tab1 = new Tab("Instructions", instruct);
+    private Tab tab2 = new Tab("LeaderBoard", board);
     private GameCreator gameCreator = new GameCreator(10, 10);
     private int milliSeconds = 500;
 
@@ -57,8 +57,6 @@ public class GUI extends Application {
         tabPane.getTabs().add(tab2);
         instructions();
 
-
-
         stepBtn.setOnMouseClicked(e -> {
             if(!stepBtn.getText().equals("Step")) {
                 initSimulator(Simulator.generateRace(gameCreator.getTilesMap(), gameCreator));
@@ -77,23 +75,21 @@ public class GUI extends Application {
             guiGrid.update();
             updateLeaderBoard();
         }));
-        animation.setCycleCount(10);
+        animation.setCycleCount(15);
         animation.play();
         animation.setOnFinished(e -> {
-            if(sim.raceFinished()){
-                animation.stop();
+            if (sim.raceFinished()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, sim.getLeaderBoard().get(0).getRacer().getName() + " has won the race!");
                 alert.setOnHidden(event -> {
                     System.exit(0);
                 });
                 alert.show();
-            }
-            else {
-                animation.setCycleCount(10);
+            } else {
+                animation.setCycleCount(5);
                 animation.play();
             }
         });
-
+    }
 
     private void updateLeaderBoard() {
         StringBuilder sb = new StringBuilder();
@@ -108,7 +104,7 @@ public class GUI extends Application {
     private void instructions() {
         StringBuilder it = new StringBuilder();
 
-        it.append("User can Add the grass or remove grass as user like by clicking addGrass/addstreet " + "\n"
+        it.append("User can Add the grass or remove grass as user like by clicking add Grass/add Street " + "\n"
                 + "\n" + " Then click on Start for the car race "+ "\n" +
                 "\n"+" Tap on LeaderBoard to see the result ");
 
