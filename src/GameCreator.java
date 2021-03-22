@@ -63,11 +63,6 @@ public class GameCreator extends GridPane{
         return output;
     }
 
-    //to string method
-    @Override
-    public String toString() {
-        return "Add the cars and add grass as you like and then click on the play with these settings";
-    }
 
 
     public GuiGrid getGuiGrid() {

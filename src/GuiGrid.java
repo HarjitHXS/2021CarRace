@@ -62,6 +62,4 @@ public class GuiGrid extends GridPane {
         super.add(child, columnIndex, rowIndex);
         nodesMap.put(new Pair(columnIndex, rowIndex), child);
     }
-
-
 }
