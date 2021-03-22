@@ -1,4 +1,8 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,8 +12,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.swing.*;
+import java.sql.Time;
 
 public class GUI extends Application {
     private GridPane uiPane = new GridPane();
@@ -22,6 +28,7 @@ public class GUI extends Application {
     private Simulator sim;
     private Label board = new Label();
     private Tab tab1 = new Tab("LeaderBoard", board);
+    private int milliSeconds = 500;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -47,15 +54,22 @@ public class GUI extends Application {
 
 
         stepBtn.setOnMouseClicked(e -> {
-
-                sim.step();
-                guiGrid.update();
-                updateLeaderBoard();
+                guiLoop();
 
         });
         quit.setOnAction(e -> closeGame());
     }
 
+    private void guiLoop() {
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(milliSeconds), e ->
+        {
+            sim.step();
+            guiGrid.update();
+            updateLeaderBoard();
+        }));
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
+    }
 
     private void updateLeaderBoard() {
         StringBuilder sb = new StringBuilder();
