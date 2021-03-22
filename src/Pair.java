@@ -1,5 +1,5 @@
 /**
- * Written by Saif
+ * https://stackoverflow.com/a/28953937
  * Pair class to allow using x,y (row, col) pairs as key in a HashMap.
  */
 public class Pair {

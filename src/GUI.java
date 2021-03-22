@@ -125,7 +125,7 @@ public class GUI extends Application {
 
     }
 
-    //Written by Saif
+    //Written by Harjit
     private void closeGame(){
         JOptionPane result = new JOptionPane();
         int dialogResult = JOptionPane.showConfirmDialog(result, "Are you sure want to Quit?",
