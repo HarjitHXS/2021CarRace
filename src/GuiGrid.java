@@ -1,5 +1,6 @@
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -18,6 +19,10 @@ public class GuiGrid extends GridPane {
         this.simMap = simMap;
         nodesMap = new HashMap<>();
         update();
+    }
+
+    public HashMap<Pair, Node> getNodesMap() {
+        return nodesMap;
     }
 
     private void highlightSelectedPath() {
@@ -43,7 +48,7 @@ public class GuiGrid extends GridPane {
             Tile tile = entry.getValue();
             Node child = new GuiTile((tile.getType()));
             add(child, pair.getX(), pair.getY());
-            child.setOnMouseClicked(event -> {
+            child.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 if (!(tile instanceof Car)) return;
                 selectedCar = (Car) tile;
                 highlightSelectedPath();
@@ -57,6 +62,4 @@ public class GuiGrid extends GridPane {
         super.add(child, columnIndex, rowIndex);
         nodesMap.put(new Pair(columnIndex, rowIndex), child);
     }
-
-
 }

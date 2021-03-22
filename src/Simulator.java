@@ -1,3 +1,4 @@
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -19,51 +20,49 @@ public class Simulator {
      */
     public void step() {
         // Remove all cars from the map (so they can update their position.)
-        //TODO: Consider changing this to check that cars don't make an invalid move (Maybe change the Racer.drive() method too)
         time+=1;
-        for (Car car : cars) {
-            if (car.hasFinished()) continue; // This prevents adding the same car multiple times.
+        for (int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+            //if (car.hasFinished()) continue; // This prevents adding the same car multiple times.
             int x = car.getX();
             int y = car.getY();
-            grid.put(new Pair(x, y), Tile.EMPTY_TILE); // Replace the old location with empty tile.
+            grid.put(new Pair(x, y), Tile.EMPTY_TILE);          // Replace the old location with empty tile.
             // make the cars move:
-            //TODO: Check the return of racer.drive(), and add to leaderboard if its false.
             car.drive();
             int newX = car.getX();
             int newY = car.getY();
-            grid.put(new Pair(newX, newY), car);
-            if(car.hasFinished())leaderBoard.add(new BoardEntry(car,time));
+            if(!car.hasFinished())
+                grid.put(new Pair(newX, newY), car);                //Show the car image on the next tile
+            if(car.hasFinished()) {
+                cars.remove(car);
+                leaderBoard.add(new BoardEntry(car, time));
+            }
         }
     }
+
+    public boolean raceFinished(){ return cars.size() == 0;}
 
     /**
      * We use this instead of a constructor for now.
      * (This is just temporary, but shows how the map is made.)
      * @return
      */
-    public final static Simulator generateRace() {
-        HashMap<Pair, Tile> map = new HashMap<>();
-        Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(
-                new Pair(0, 7), new Pair(3, 1)
-        )), map, "Car1", Color.RED, 2);
+    public final static Simulator generateRace(HashMap<Pair, Tile> gameBoard, GameCreator gameCreator) {
+        gameCreator.unoccupiedTiles(gameCreator.getTilesMap());
+        //There will always be four checkpoints to pick from
+        ArrayList<Pair> checkpoints = gameCreator.getCheckpoints();
+
+        //Generating the list of cars
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
-                car,
-                new Car(0, 7, new ArrayList(Arrays.asList(new Pair(6,5), new Pair(8, 2))), map, "Car2",Color.BLUE, 1),
-                new Car(0, 8, new ArrayList(Arrays.asList(new Pair(6, 7), new Pair(3,3))), map, "Car3",Color.GREEN, 1)
+                new Car(0, 0, new ArrayList<>(Arrays.asList(checkpoints.get(0), checkpoints.get(1), checkpoints.get(2), checkpoints.get(3))), gameBoard, "Car1", Color.RED, 2),
+                new Car(0, 7, new ArrayList(Arrays.asList(checkpoints.get(1), checkpoints.get(2), checkpoints.get(3), checkpoints.get(0))), gameBoard, "Car2",Color.BLUE, 1),
+                new Car(0, 8, new ArrayList(Arrays.asList(checkpoints.get(3), checkpoints.get(0), checkpoints.get(1), checkpoints.get(2))), gameBoard, "Car3",Color.GREEN, 1)
         ));
-        return generateHelper(10, 10, cars, map);
+
+        return generateHelper(cars, gameBoard);
     }
 
-    public final static Simulator generateHelper(int rows, int cols, ArrayList<Car> cars, HashMap<Pair, Tile> map) {
-        // Fill map with empty tiles
-        for (int i=0; i<rows; i++) {
-            for (int j=0; j<cols; j++)
-                map.put(new Pair(i,j), Tile.EMPTY_TILE);
-        }
-
-        // Make a grass patch down the middle
-        for (int i=0; i<rows/2; i++)
-            map.put(new Pair(cols/2, i), Tile.GRASS_TILE);
+    public final static Simulator generateHelper(ArrayList<Car> cars, HashMap<Pair, Tile> map) {
         // Add cars
         for (Car car : cars)
             map.put(new Pair(car.getX(), car.getY()), car);
@@ -74,12 +73,9 @@ public class Simulator {
         );
     }
 
-    public HashMap<Pair, Tile> getGrid() {
-        return grid;
-    }
-
     public ArrayList<BoardEntry> getLeaderBoard() {
-
         return leaderBoard;
     }
+
+
 }
