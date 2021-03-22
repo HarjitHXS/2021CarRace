@@ -20,7 +20,6 @@ public class Simulator {
      */
     public void step() {
         // Remove all cars from the map (so they can update their position.)
-        //TODO: Consider changing this to check that cars don't make an invalid move (Maybe change the Racer.drive() method too)
         time+=1;
         for (int i = 0; i < cars.size(); i++) {
             Car car = cars.get(i);
@@ -37,17 +36,11 @@ public class Simulator {
             if(car.hasFinished()) {
                 cars.remove(car);
                 leaderBoard.add(new BoardEntry(car, time));
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, car.getName() + " has finished the race");
-                alert.showAndWait();
-                if(cars.size() == 0){
-                    alert = new Alert(Alert.AlertType.INFORMATION, leaderBoard.get(0).getRacer().getName() + " has won the race.");
-                    alert.showAndWait();
-                }
             }
-
-
         }
     }
+
+    public boolean raceFinished(){ return cars.size() == 0;}
 
     /**
      * We use this instead of a constructor for now.

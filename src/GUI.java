@@ -1,3 +1,5 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import javax.swing.*;
 
 
@@ -25,6 +29,7 @@ public class GUI extends Application {
     private Tab tab1 = new Tab("LeaderBoard", board);
     private Tab tab2 = new Tab("Instructions", instruct);
     private GameCreator gameCreator = new GameCreator(10, 10);
+    private double milliSeconds = 500;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -55,14 +60,22 @@ public class GUI extends Application {
                 initSimulator(Simulator.generateRace(gameCreator.getTilesMap(), gameCreator));
             }
             stepBtn.setText("Step");
-            sim.step();
-            guiGrid.update();
-            updateLeaderBoard();
-
+            guiLoop();
         });
+
         quit.setOnAction(e -> closeGame());
     }
 
+    private void guiLoop() {
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(milliSeconds), e ->
+        {
+            sim.step();
+            guiGrid.update();
+            updateLeaderBoard();
+        }));
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
+    }
 
     private void updateLeaderBoard() {
         StringBuilder sb = new StringBuilder();
