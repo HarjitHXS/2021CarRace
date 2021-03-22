@@ -72,7 +72,7 @@ public class GameCreator extends GridPane{
             checkpoints.add(blankTiles.get(random_int));
             blankTiles.remove(random_int);
         }
-        //System.out.println(checkpoints);
+        System.out.println(checkpoints);
     }
     //Creates a blank tile map that the user uses to create grass tiles
     private HashMap<Pair, Tile> createTileMap(){
