@@ -62,7 +62,6 @@ public class GUI extends Application {
             if(!stepBtn.getText().equals("Step")) {
                 initSimulator(Simulator.generateRace(gameCreator.getTilesMap(), gameCreator));
             }
-            stepBtn.setText("Step");
             guiLoop();
         });
 
@@ -143,7 +142,7 @@ public class GUI extends Application {
         guiGrid = gameCreator.getGuiGrid();
     }
 
-    //Written by Saif
+    //Written by Harjit
     private void showIntroScene(Stage window) {
         GridPane root = new GridPane();
         root.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
