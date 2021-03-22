@@ -1,4 +1,5 @@
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -53,7 +54,6 @@ public class GameCreator extends GridPane{
                 guiGrid.update();
                 //3. Re-add EventHandlers
                 addOnClicks(); // GuiGrid's update will change the Nodes, and they don't have the handler
-
             });
     }
 

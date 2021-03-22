@@ -73,8 +73,24 @@ public class GUI extends Application {
             guiGrid.update();
             updateLeaderBoard();
         }));
-        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.setCycleCount(10);
         animation.play();
+        animation.setOnFinished(e -> {
+            if(sim.raceFinished()){
+                animation.stop();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, sim.getLeaderBoard().get(0).getRacer().getName() + " has won the race!");
+                alert.setOnHidden(event -> {
+                    System.exit(0);
+                });
+                alert.show();
+            }
+            else {
+                animation.setCycleCount(10);
+                animation.play();
+            }
+        });
+
+
     }
 
     private void updateLeaderBoard() {
