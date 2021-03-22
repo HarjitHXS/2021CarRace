@@ -31,12 +31,13 @@ public class GUI extends Application {
     private GameCreator gameCreator = new GameCreator(10, 10);
     private int milliSeconds = 500;
 
+    //Written by Saif and edited by Alex
+    //GUI frontend was created by Harjit
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("Car-Racing");
         primaryStage.getIcons().add(new Image("carbackground.jpg"));
-
 
         //Scene-One code Here
         showIntroScene(primaryStage);
@@ -68,6 +69,9 @@ public class GUI extends Application {
         quit.setOnAction(e -> closeGame());
     }
 
+    /** Written by Saif and Alex
+     * This loop creates the animation part of the GUI, which is the car's movement.
+     */
     private void guiLoop() {
         Timeline animation = new Timeline(new KeyFrame(Duration.millis(milliSeconds), e ->
         {
@@ -77,6 +81,10 @@ public class GUI extends Application {
         }));
         animation.setCycleCount(15);
         animation.play();
+        /*
+        * The animation 'loops' for 15 frames at a time and then checks if the game has concluded with a winner. If
+        * there is a winner then the game will alert the user and close the game.
+         */
         animation.setOnFinished(e -> {
             if (sim.raceFinished()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, sim.getLeaderBoard().get(0).getRacer().getName() + " has won the race!");
@@ -91,6 +99,7 @@ public class GUI extends Application {
         });
     }
 
+    //Written by Saif
     private void updateLeaderBoard() {
         StringBuilder sb = new StringBuilder();
         for (int i=1; i <= sim.getLeaderBoard().size(); i++) {
@@ -101,6 +110,8 @@ public class GUI extends Application {
 
 
     }
+
+    //Written by Harjit
     private void instructions() {
         StringBuilder it = new StringBuilder();
 
@@ -113,8 +124,9 @@ public class GUI extends Application {
         instruct.setPrefSize(170, 200);
         instruct.setFont(Font.font ("Verdana", 12));
 
-
     }
+
+    //Written by Saif
     private void closeGame(){
         JOptionPane result = new JOptionPane();
         int dialogResult = JOptionPane.showConfirmDialog(result, "Are you sure want to Quit?",
@@ -131,6 +143,7 @@ public class GUI extends Application {
         guiGrid = gameCreator.getGuiGrid();
     }
 
+    //Written by Saif
     private void showIntroScene(Stage window) {
         GridPane root = new GridPane();
         root.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));

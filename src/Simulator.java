@@ -1,4 +1,3 @@
-import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -15,7 +14,7 @@ public class Simulator {
         this.leaderBoard = new ArrayList<>();
     }
 
-    /**
+    /** Written by Saif and edited by Alex
      * This is the method to update our race. Here all cars make a move and we update their position in grid.
      */
     public void step() {
@@ -42,7 +41,7 @@ public class Simulator {
 
     public boolean raceFinished(){ return cars.size() == 0;}
 
-    /**
+    /** Written by Saif edited by Alex
      * We use this instead of a constructor for now.
      * (This is just temporary, but shows how the map is made.)
      * @return
@@ -62,6 +61,7 @@ public class Simulator {
         return generateHelper(cars, gameBoard);
     }
 
+    //Written by Saif and edited by Alex
     public final static Simulator generateHelper(ArrayList<Car> cars, HashMap<Pair, Tile> map) {
         // Add cars
         for (Car car : cars)

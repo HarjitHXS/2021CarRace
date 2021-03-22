@@ -1,13 +1,14 @@
+/*
+ * Class was created by Alex with help by Saif
+ */
+
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class GameCreator extends GridPane{
 
@@ -39,9 +40,8 @@ public class GameCreator extends GridPane{
         addOnClicks();
     }
 
-    /**
+    /** Edited by Saif
      * Adds event handlers to the tiles so we can fill them with the selectedTile
-     *
      */
     private void addOnClicks() {
         for (Map.Entry<Pair, Node> entry: guiGrid.getNodesMap().entrySet())
@@ -83,8 +83,6 @@ public class GameCreator extends GridPane{
         }
         return output;
     }
-
-
 
     public GuiGrid getGuiGrid() {
         return guiGrid;
