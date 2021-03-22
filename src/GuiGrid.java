@@ -1,7 +1,6 @@
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,9 @@ public class GuiGrid extends GridPane {
         }
     }
 
-    //Written by Saif with edits by Alex
+    /** Written by Saif with edits by Alex
+     * This function is used to update the GUI to show the cars moving in real time.
+     */
     public void update() {
         this.getChildren().clear();
         nodesMap = new HashMap<>();
@@ -49,7 +50,6 @@ public class GuiGrid extends GridPane {
             if(tile.getType() == types.CAR) {
                 Car car = (Car) tile;
                 child = new GuiTile(tile.getType(), car.getCarColor());
-
             }
             else {
                 child = new GuiTile((tile.getType()), "");

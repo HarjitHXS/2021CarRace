@@ -1,5 +1,3 @@
-import javafx.scene.paint.Color;
-
 import java.util.*;
 
 public class Simulator {
