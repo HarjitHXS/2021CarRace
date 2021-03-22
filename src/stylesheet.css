@@ -1,11 +1,30 @@
-.car {
-    -fx-background-color: blue;
-    padding: 1px;
-    -fx-border-color: black;
+.guiTile {
     -fx-border-width: 0 0 1 1;
+    -fx-border-color: black;
+}
+
+.car {
+    padding: 1px;
 }
 
 .street {
-    -fx-border-color: black;
-    -fx-border-width: 0 0 1 1;
+    -fx-background-color: grey;
 }
+
+.grass {
+    -fx-background-color: lightgreen;
+}
+
+.highlight-green {
+    -fx-background-color: green;
+}
+
+.highlight-red {
+    -fx-background-color: red;
+}
+
+.highlight-blue  {
+    -fx-background-color: blue;
+}
+
+

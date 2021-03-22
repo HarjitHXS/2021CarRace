@@ -42,4 +42,12 @@ public class Pair {
     public int getY() {
         return y;
     }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

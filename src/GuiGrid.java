@@ -1,23 +1,37 @@
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GuiGrid extends GridPane {
     private HashMap<Pair, Tile> simMap;
     private HashMap<Pair, Node> nodesMap; // This lets us access nodes in our GridPane (GridPane does not include that.)
+    private Car selectedCar;
 
     public GuiGrid(HashMap<Pair, Tile> simMap) {
         // Iterate on the venueGrid, to generate our GuiGrid.
         super();
         this.simMap = simMap;
         nodesMap = new HashMap<>();
-        for (Map.Entry<Pair, Tile> entry: simMap.entrySet()){
-            Pair pair = entry.getKey();
-            Tile tile = entry.getValue();
-            add(new GuiTile(tile.getType()), pair.getX(), pair.getY());
+        update();
+    }
+
+    private void highlightSelectedPath() {
+        if (selectedCar == null) return;
+
+        for (Pair p : selectedCar.getNextMoves()) {
+            Node node = nodesMap.get(p);
+            if(selectedCar.getCarColor() == Color.GREEN)
+                node.getStyleClass().add("highlight-green");
+            if(selectedCar.getCarColor() == Color.RED)
+                node.getStyleClass().add("highlight-red");
+            if(selectedCar.getCarColor() == Color.BLUE)
+                node.getStyleClass().add("highlight-blue");
+
         }
     }
 
@@ -27,14 +41,21 @@ public class GuiGrid extends GridPane {
         for (Map.Entry<Pair, Tile> entry: simMap.entrySet()){
             Pair pair = entry.getKey();
             Tile tile = entry.getValue();
-            add(new GuiTile(tile.getType()), pair.getX(), pair.getY());
+            Node child = new GuiTile((tile.getType()));
+            add(child, pair.getX(), pair.getY());
+            child.setOnMouseClicked(event -> {
+                if (!(tile instanceof Car)) return;
+                selectedCar = (Car) tile;
+                highlightSelectedPath();
+            });
         }
+        highlightSelectedPath();
     }
 
     @Override
     public void add(Node child, int columnIndex, int rowIndex) {
         super.add(child, columnIndex, rowIndex);
-        nodesMap.put(new Pair(rowIndex, columnIndex), child);
+        nodesMap.put(new Pair(columnIndex, rowIndex), child);
     }
 
 

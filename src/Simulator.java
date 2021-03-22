@@ -1,3 +1,5 @@
+import javafx.scene.paint.Color;
+
 import java.util.*;
 
 public class Simulator {
@@ -18,7 +20,9 @@ public class Simulator {
     public void step() {
         // Remove all cars from the map (so they can update their position.)
         //TODO: Consider changing this to check that cars don't make an invalid move (Maybe change the Racer.drive() method too)
+        time+=1;
         for (Car car : cars) {
+            if (car.hasFinished()) continue; // This prevents adding the same car multiple times.
             int x = car.getX();
             int y = car.getY();
             grid.put(new Pair(x, y), Tile.EMPTY_TILE); // Replace the old location with empty tile.
@@ -28,6 +32,7 @@ public class Simulator {
             int newX = car.getX();
             int newY = car.getY();
             grid.put(new Pair(newX, newY), car);
+            if(car.hasFinished())leaderBoard.add(new BoardEntry(car,time));
         }
     }
 
@@ -37,25 +42,44 @@ public class Simulator {
      * @return
      */
     public final static Simulator generateRace() {
-        HashMap<Pair, Tile> map = new HashMap<Pair, Tile>();
-        map.put(new Pair(0,0), new Car(0,0));
-        map.put(new Pair(1,0), Tile.EMPTY_TILE);
-        map.put(new Pair(2,0), Tile.EMPTY_TILE);
-        map.put(new Pair(3,0), Tile.EMPTY_TILE);
-        map.put(new Pair(0,1), Tile.EMPTY_TILE);
-        map.put(new Pair(1,1), Tile.EMPTY_TILE);
-        map.put(new Pair(2,1), Tile.EMPTY_TILE);
-        map.put(new Pair(3,1), Tile.EMPTY_TILE);
+        HashMap<Pair, Tile> map = new HashMap<>();
+        Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(
+                new Pair(0, 7), new Pair(3, 1)
+        )), map, "Car1", Color.RED, 2);
+        ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
+                car,
+                new Car(0, 7, new ArrayList(Arrays.asList(new Pair(6,5), new Pair(8, 2))), map, "Car2",Color.BLUE, 1),
+                new Car(0, 8, new ArrayList(Arrays.asList(new Pair(6, 7), new Pair(3,3))), map, "Car3",Color.GREEN, 1)
+        ));
+        return generateHelper(10, 10, cars, map);
+    }
 
+    public final static Simulator generateHelper(int rows, int cols, ArrayList<Car> cars, HashMap<Pair, Tile> map) {
+        // Fill map with empty tiles
+        for (int i=0; i<rows; i++) {
+            for (int j=0; j<cols; j++)
+                map.put(new Pair(i,j), Tile.EMPTY_TILE);
+        }
 
-        Simulator simulator = new Simulator(
-                new ArrayList<>(Arrays.asList(new Car(0, 0))),
+        // Make a grass patch down the middle
+        for (int i=0; i<rows/2; i++)
+            map.put(new Pair(cols/2, i), Tile.GRASS_TILE);
+        // Add cars
+        for (Car car : cars)
+            map.put(new Pair(car.getX(), car.getY()), car);
+
+        return new Simulator(
+                cars,
                 map
         );
-        return simulator;
     }
 
     public HashMap<Pair, Tile> getGrid() {
         return grid;
+    }
+
+    public ArrayList<BoardEntry> getLeaderBoard() {
+
+        return leaderBoard;
     }
 }
