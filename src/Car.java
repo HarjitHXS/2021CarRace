@@ -147,8 +147,9 @@ public class Car extends Tile {
         // Add the valid ones, or all if !validOnly.
         for (Pair p : directions) {
             if (grid.get(p) == null) continue; // usually means we are out of bounds
-            boolean shouldAt = ((!validOnly || grid.get(p).getType() == types.STREET || !(grid.get(p).getType() == types.GRASS)));
-            if (shouldAt)
+            boolean isGrass = grid.get(p).getType() == types.GRASS;
+            boolean shouldAdd = ((!validOnly || grid.get(p).getType() == types.STREET) && !(isGrass));
+            if (shouldAdd)
                 validAdjacents.add(p);
 
 
