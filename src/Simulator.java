@@ -1,3 +1,4 @@
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -56,10 +57,11 @@ public class Simulator {
 
     public final static Simulator generateHelper(int rows, int cols, ArrayList<Car> cars, HashMap<Pair, Tile> map) {
         // Fill map with empty tiles
-        for (int i=0; i<rows; i++) {
+        /*for (int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++)
-                map.put(new Pair(i,j), Tile.EMPTY_TILE);
-        }
+                if(map.get(new Pair(i,j)).getType() == types.GRASS)
+                    map.put(new Pair(i,j), Tile.EMPTY_TILE);
+        }*/
         // Add cars
         for (Car car : cars)
             map.put(new Pair(car.getX(), car.getY()), car);
@@ -68,6 +70,15 @@ public class Simulator {
                 cars,
                 map
         );
+    }
+
+    public ArrayList<Pair> unoccupiedTiles(HashMap<Pair, Tile> input){
+        ArrayList<Pair> output = new ArrayList<>();
+        for(Map.Entry<Pair, Tile> entry: input.entrySet()){
+            if(entry.getValue().getType() != types.GRASS)
+                output.add(entry.getKey());
+        }
+        return output;
     }
 
     public HashMap<Pair, Tile> getGrid() {
