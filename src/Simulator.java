@@ -42,26 +42,25 @@ public class Simulator {
      * (This is just temporary, but shows how the map is made.)
      * @return
      */
-    public final static Simulator generateRace(HashMap<Pair, Tile> gameBoard) {
-        Car car = new Car(0, 0, new ArrayList<>(Arrays.asList(
-                new Pair(0, 7), new Pair(3, 1)
-        )), gameBoard, "Car1", Color.RED, 2);
+    public final static Simulator generateRace(HashMap<Pair, Tile> gameBoard, GameCreator gameCreator) {
+        gameCreator.unoccupiedTiles(gameCreator.getTilesMap());
+        //There will always be four checkpoints to pick from
+        ArrayList<Pair> checkpoints = gameCreator.getCheckpoints();
+        //Creating one car object
+        Car car = new Car(0, 0,
+                new ArrayList<>(Arrays.asList(checkpoints.get(0), checkpoints.get(1), checkpoints.get(2), checkpoints.get(3))),
+                gameBoard, "Car1", Color.RED, 2);
+        //Generating the list of cars
         ArrayList<Car> cars = new ArrayList<>(Arrays.asList(
                 car,
-                new Car(0, 7, new ArrayList(Arrays.asList(new Pair(6,5), new Pair(8, 2))), gameBoard, "Car2",Color.BLUE, 1),
-                new Car(0, 8, new ArrayList(Arrays.asList(new Pair(6, 7), new Pair(3,3))), gameBoard, "Car3",Color.GREEN, 1)
+                new Car(0, 7, new ArrayList(Arrays.asList(checkpoints.get(1), checkpoints.get(3), checkpoints.get(2), checkpoints.get(0))), gameBoard, "Car2",Color.BLUE, 1),
+                new Car(0, 8, new ArrayList(Arrays.asList(checkpoints.get(3), checkpoints.get(0), checkpoints.get(1), checkpoints.get(2))), gameBoard, "Car3",Color.GREEN, 1)
         ));
 
         return generateHelper(10, 10, cars, gameBoard);
     }
 
     public final static Simulator generateHelper(int rows, int cols, ArrayList<Car> cars, HashMap<Pair, Tile> map) {
-        // Fill map with empty tiles
-        /*for (int i=0; i<rows; i++) {
-            for (int j=0; j<cols; j++)
-                if(map.get(new Pair(i,j)).getType() == types.GRASS)
-                    map.put(new Pair(i,j), Tile.EMPTY_TILE);
-        }*/
         // Add cars
         for (Car car : cars)
             map.put(new Pair(car.getX(), car.getY()), car);

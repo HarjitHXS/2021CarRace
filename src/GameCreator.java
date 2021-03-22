@@ -72,8 +72,9 @@ public class GameCreator extends GridPane{
             checkpoints.add(blankTiles.get(random_int));
             blankTiles.remove(random_int);
         }
+        //System.out.println(checkpoints);
     }
-
+    //Creates a blank tile map that the user uses to create grass tiles
     private HashMap<Pair, Tile> createTileMap(){
         HashMap<Pair, Tile> output = new HashMap<>();
         for (int i = 0; i < rows; i++) {
@@ -95,5 +96,7 @@ public class GameCreator extends GridPane{
     }
 
     public HashMap<Pair, Tile> getTilesMap(){ return tilesMap; }
+
+    public ArrayList<Pair> getCheckpoints(){ return checkpoints; }
 
 }
