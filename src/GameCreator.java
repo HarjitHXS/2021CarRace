@@ -68,7 +68,7 @@ public class GameCreator extends GridPane{
 
     private void generateCheckpoints(ArrayList<Pair> blankTiles){
         for(int i = 0; i < 4; i++){
-            int random_int = (int)(Math.random() * (blankTiles.size() + 1));
+            int random_int = (int)(Math.random() * (blankTiles.size()));
             checkpoints.add(blankTiles.get(random_int));
             blankTiles.remove(random_int);
         }
