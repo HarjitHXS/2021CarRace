@@ -14,13 +14,13 @@ public class Car extends Tile {
     private ArrayList<Pair> nextMoves = new ArrayList<>();
     private int nextMoveIndex = 0;
     private HashMap<Pair, Tile> grid;
-    private Color carColor;
+    private String carColor;
     private String name;
     private int slowness; // unit time per move
     private int timeUntilMove; // Everytime it hits 0, we can move and then reset to slowness.
 
 
-    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, String name, Color color, int slowness) {
+    public Car(int x, int y, ArrayList<Pair> goalPath, HashMap<Pair, Tile> grid, String name, String color, int slowness) {
         super(types.CAR);
         this.x = x;
         this.y = y;
@@ -180,7 +180,7 @@ public class Car extends Tile {
         return y;
     }
 
-    public Color getCarColor(){ return carColor; }
+    public String getCarColor(){ return carColor; }
 
     public String getName() {
         return name;

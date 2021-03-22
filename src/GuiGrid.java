@@ -28,11 +28,11 @@ public class GuiGrid extends GridPane {
 
         for (Pair p : selectedCar.getNextMoves()) {
             Node node = nodesMap.get(p);
-            if(selectedCar.getCarColor() == Color.GREEN)
+            if(selectedCar.getCarColor().equals("green"))
                 node.getStyleClass().add("highlight-green");
-            if(selectedCar.getCarColor() == Color.RED)
+            if(selectedCar.getCarColor().equals("red"))
                 node.getStyleClass().add("highlight-red");
-            if(selectedCar.getCarColor() == Color.BLUE)
+            if(selectedCar.getCarColor().equals("blue"))
                 node.getStyleClass().add("highlight-blue");
 
         }
@@ -45,7 +45,15 @@ public class GuiGrid extends GridPane {
         for (Map.Entry<Pair, Tile> entry: simMap.entrySet()){
             Pair pair = entry.getKey();
             Tile tile = entry.getValue();
-            Node child = new GuiTile((tile.getType()));
+            Node child;
+            if(tile.getType() == types.CAR) {
+                Car car = (Car) tile;
+                child = new GuiTile(tile.getType(), car.getCarColor());
+
+            }
+            else {
+                child = new GuiTile((tile.getType()), "");
+            }
             add(child, pair.getX(), pair.getY());
             child.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 if (!(tile instanceof Car)) return;
