@@ -44,7 +44,7 @@ public class GUI extends Application {
         //Scene-Two code Here
         stepBtn.setTooltip(new Tooltip("Click here to Start game"));
         quit.setTooltip(new Tooltip("Click here to Quit"));
-        initSimulator(Simulator.generateRace(gameCreator.getTilesMap()));
+        initSimulator(Simulator.generateRace(gameCreator.getTilesMap(), gameCreator));
         uiPane.add(gameCreator, 0, 0);
         uiPane.add(stepBtn, 0, 1);
         uiPane.add(quit,1,1);
