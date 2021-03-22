@@ -11,6 +11,8 @@ public class Tile {
 
     public final static Tile GRASS_TILE = new Tile(types.GRASS);
 
+    public final static Tile CHECKPOINT_TILE = new Tile(types.CHECKPOINT);
+
 
     private types type;
 
@@ -23,4 +25,4 @@ public class Tile {
     }
 }
 
-enum types {CAR, STREET, GRASS};
+enum types {CAR, STREET, GRASS, CHECKPOINT};

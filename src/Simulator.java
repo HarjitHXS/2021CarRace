@@ -72,15 +72,6 @@ public class Simulator {
         );
     }
 
-    public ArrayList<Pair> unoccupiedTiles(HashMap<Pair, Tile> input){
-        ArrayList<Pair> output = new ArrayList<>();
-        for(Map.Entry<Pair, Tile> entry: input.entrySet()){
-            if(entry.getValue().getType() != types.GRASS)
-                output.add(entry.getKey());
-        }
-        return output;
-    }
-
     public HashMap<Pair, Tile> getGrid() {
         return grid;
     }

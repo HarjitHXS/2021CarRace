@@ -18,5 +18,7 @@ public class GuiTile extends Label {
         if( type == types.GRASS){
             this.getStyleClass().add("grass");
         }
+        if( type == types.CHECKPOINT)
+            this.getStyleClass().add("checkpoint");
     }
 }

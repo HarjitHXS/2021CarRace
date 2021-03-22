@@ -8,8 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import javax.swing.*;
+
 
 public class GUI extends Application {
     private GridPane uiPane = new GridPane();
@@ -51,10 +51,14 @@ public class GUI extends Application {
 
 
         stepBtn.setOnMouseClicked(e -> {
-                stepBtn.setText("Step");
-                sim.step();
-                guiGrid.update();
-                updateLeaderBoard();
+            if(!stepBtn.getText().equals("Step")) {
+                gameCreator.unoccupiedTiles(gameCreator.getTilesMap());
+
+            }
+            stepBtn.setText("Step");
+            sim.step();
+            guiGrid.update();
+            updateLeaderBoard();
 
         });
         quit.setOnAction(e -> closeGame());
