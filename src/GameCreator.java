@@ -60,7 +60,7 @@ public class GameCreator extends GridPane{
     public void unoccupiedTiles(HashMap<Pair, Tile> input){
         ArrayList<Pair> output = new ArrayList<>();
         for(Map.Entry<Pair, Tile> entry: input.entrySet()){
-            if(entry.getValue().getType() != types.GRASS)
+            if(entry.getValue().getType() == types.STREET)
                 output.add(entry.getKey());
         }
         generateCheckpoints(output);

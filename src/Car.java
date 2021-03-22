@@ -75,6 +75,7 @@ public class Car extends Tile {
     private Pair nextMove() {
         if (shouldRecalculate())
             calculatePath();
+        if (nextMoves.size()==0) return new Pair(x, y);
         Pair nextMove = nextMoves.get(nextMoveIndex);
         nextMoveIndex += 1;
         return nextMove;
