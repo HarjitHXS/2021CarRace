@@ -2,8 +2,6 @@
  * This class was created by Saif with the help of Harjit
  */
 
-import javafx.scene.paint.Color;
-
 import java.util.*;
 
 public class Car extends Tile {
