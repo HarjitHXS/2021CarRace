@@ -8,6 +8,7 @@ public class GuiTile extends Label {
     public GuiTile(types type) {
         super("");
         setPrefSize(60, 60); //TODO: re-think the sizing of our app (We don't need to dynamically change.)
+        getStyleClass().add("guiTile");
         if (type==types.CAR) {
             this.getStyleClass().add("car");
             Image img = new Image("clearBackgroundSideView.jpg", 50, 50, false, false);
@@ -18,5 +19,7 @@ public class GuiTile extends Label {
         if( type == types.GRASS){
             this.getStyleClass().add("grass");
         }
+        if( type == types.CHECKPOINT)
+            this.getStyleClass().add("checkpoint");
     }
 }

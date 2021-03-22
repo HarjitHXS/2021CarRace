@@ -1,31 +1,34 @@
+.guiTile {
+    -fx-border-width: 0 0 1 1;
+    -fx-border-color: black;
+}
+
 .car {
     padding: 1px;
-    -fx-border-color: black;
-    -fx-border-width: 0 0 1 1;
 }
 
 .street {
-    -fx-border-color: black;
-    -fx-border-width: 0 0 1 1;
+    -fx-background-color: grey;
 }
 
 .grass {
-    -fx-border-width: 0 0 1 1;
     -fx-background-color: lightgreen;
 }
 
-.highlight-green {
+.checkpoint {
     -fx-border-width: 0 0 1 1;
+    -fx-border-color: gold;
+}
+
+.highlight-green {
     -fx-background-color: green;
 }
 
 .highlight-red {
-    -fx-border-width: 0 0 1 1;
     -fx-background-color: red;
 }
 
 .highlight-blue  {
-    -fx-border-width: 0 0 1 1;
     -fx-background-color: blue;
 }
 

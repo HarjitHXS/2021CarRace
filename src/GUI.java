@@ -45,6 +45,7 @@ public class GUI extends Application {
         stepBtn.setTooltip(new Tooltip("Click here to Start game"));
         quit.setTooltip(new Tooltip("Click here to Quit"));
         initSimulator(Simulator.generateRace(gameCreator.getTilesMap(), gameCreator));
+
         uiPane.add(gameCreator, 0, 0);
         uiPane.add(stepBtn, 0, 1);
         uiPane.add(quit,1,1);
@@ -59,12 +60,16 @@ public class GUI extends Application {
 
 
         stepBtn.setOnMouseClicked(e -> {
-
+            if(!stepBtn.getText().equals("Step")) {
+                initSimulator(Simulator.generateRace(gameCreator.getTilesMap(), gameCreator));
+            }
+            stepBtn.setText("Step");
             guiLoop();
-
         });
+
         quit.setOnAction(e -> closeGame());
     }
+
     private void guiLoop() {
         Timeline animation = new Timeline(new KeyFrame(Duration.millis(milliSeconds), e ->
         {
@@ -72,10 +77,22 @@ public class GUI extends Application {
             guiGrid.update();
             updateLeaderBoard();
         }));
-        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.setCycleCount(10);
         animation.play();
-    }
-
+        animation.setOnFinished(e -> {
+            if(sim.raceFinished()){
+                animation.stop();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, sim.getLeaderBoard().get(0).getRacer().getName() + " has won the race!");
+                alert.setOnHidden(event -> {
+                    System.exit(0);
+                });
+                alert.show();
+            }
+            else {
+                animation.setCycleCount(10);
+                animation.play();
+            }
+        });
 
 
     private void updateLeaderBoard() {
