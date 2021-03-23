@@ -21,7 +21,7 @@ public class GuiTile extends Label {
                 setGraphic(new ImageView(img));
             }
             if(color.equals("blue")){
-                Image img = new Image("BlueCar.jpg", 50, 50, false, false);
+                Image img = new Image("blue car.jpg", 50, 50, false, false);
                 setGraphic(new ImageView(img));
             }
         }
