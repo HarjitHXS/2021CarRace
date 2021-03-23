@@ -1,3 +1,4 @@
+## BUILD BY Saif, Harjit, Alex
 ## What it does?
 
 Write a JavaFX project (extend JavaFX application) that implements a Car race. The application do the following:
