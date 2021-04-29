@@ -25,8 +25,14 @@ public class GuiTile extends Label {
                 setGraphic(new ImageView(img));
             }
         }
-        if (type==types.STREET)
+        if (type==types.STREET) {
             this.getStyleClass().add("street");
+            if (color.equals("yellow")) {
+                this.getStyleClass().add("checkpoint");
+                this.getStyleClass().remove("street");
+
+            }
+        }
         if( type == types.GRASS){
             this.getStyleClass().add("grass");
         }

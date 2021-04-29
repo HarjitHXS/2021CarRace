@@ -1,6 +1,9 @@
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,14 +11,17 @@ public class GuiGrid extends GridPane {
     private HashMap<Pair, Tile> simMap;
     private HashMap<Pair, Node> nodesMap; // This lets us access nodes in our GridPane (GridPane does not include that.)
     private Car selectedCar;
+    private ArrayList<Pair> checkpoints;
 
-    public GuiGrid(HashMap<Pair, Tile> simMap) {
+    public GuiGrid(HashMap<Pair, Tile> simMap, ArrayList<Pair> checkpoints) {
         // Iterate on the venueGrid, to generate our GuiGrid.
         super();
+        this.checkpoints = checkpoints;
         this.simMap = simMap;
         nodesMap = new HashMap<>();
         update();
     }
+
 
     public HashMap<Pair, Node> getNodesMap() {
         return nodesMap;
@@ -53,6 +59,9 @@ public class GuiGrid extends GridPane {
             }
             else {
                 child = new GuiTile((tile.getType()), "");
+                if (checkpoints.contains(pair))
+                    child = new GuiTile((tile.getType()), "yellow");
+
             }
             add(child, pair.getX(), pair.getY());
             child.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

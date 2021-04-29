@@ -71,6 +71,7 @@ public class Simulator {
         );
     }
 
+
     public ArrayList<BoardEntry> getLeaderBoard() {
         return leaderBoard;
     }

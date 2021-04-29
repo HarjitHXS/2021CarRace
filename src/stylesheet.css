@@ -16,8 +16,7 @@
 }
 
 .checkpoint {
-    -fx-border-width: 0 0 1 1;
-    -fx-border-color: gold;
+   -fx-background-color: yellow;
 }
 
 .highlight-green {

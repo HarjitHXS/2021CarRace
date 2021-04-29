@@ -24,7 +24,7 @@ public class GameCreator extends GridPane{
         this.columns = columns;
         this.rows = rows;
         tilesMap = createTileMap();
-        this.guiGrid = new GuiGrid(tilesMap);
+        this.guiGrid = new GuiGrid(tilesMap, checkpoints);
         add(guiGrid, 0, 0);
         add(toggleSelection,0,2);
         toggleSelection.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
